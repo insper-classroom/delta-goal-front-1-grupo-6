@@ -7,7 +7,7 @@ let defaultState: StateInterface = {
         email: ""
     },
     emailToken: "",
-    currentStep: "authCode"
+    currentStep: "email"
 }
 
 export const useState = defineStore('register-state', {

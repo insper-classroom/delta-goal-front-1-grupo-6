@@ -39,10 +39,13 @@ export default defineComponent({
                 body: JSON.stringify({email: this.state.infos.email})
             })).json()
 
+            Emitter.emit("add-notify", {message: responseData.message}) 
+
             if (responseData.status != "success") {
-                return Emitter.emit("add-notify", {message: "Preencha todas as informações para poder finalizar."}) 
+                return 
             }
             
+            this.$router.push("/login")
         }
     },
     mounted() {
