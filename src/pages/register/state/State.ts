@@ -7,7 +7,7 @@ let defaultState: StateInterface = {
         email: ""
     },
     emailToken: "",
-    currentStep: "email"
+    currentStep: "authCode"
 }
 
 export const useState = defineStore('register-state', {
@@ -19,6 +19,7 @@ export const useState = defineStore('register-state', {
 
 export interface StateInterface {
     infos: {
+        [index: string]: string,
         clubName: string,
         password: string,
         email: string

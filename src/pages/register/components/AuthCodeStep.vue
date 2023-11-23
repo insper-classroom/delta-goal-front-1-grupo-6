@@ -8,7 +8,7 @@ import { config } from '@/constants/config';
 
 interface DataInterface {
     state: StateInterface
-    codeBlocks: (null | string | number)[]
+    codeBlocks: (null | string)[]
 }
 
 export default defineComponent({
@@ -26,9 +26,17 @@ export default defineComponent({
         codeBlocks: {
             handler() {
                 for (let i in this.codeBlocks) {
-                    console.log(String(this.codeBlocks[i]))
+                    let nums = "1234567890".split('')
+                    if (nums.includes(String(this.codeBlocks[i]))) {
+                        continue
+                    }
+
                     if ((Number(this.codeBlocks[i]) || 0) > 9 || String(this.codeBlocks[i]).length > 1) {
-                        this.codeBlocks[i] = Number(String(this.codeBlocks[i]).at(-1)) || null
+                        this.codeBlocks[i] = this.codeBlocks[i]?.at(-1) || null
+                    }
+
+                    if (!nums.includes(String(this.codeBlocks[i]))) {
+                        this.codeBlocks[i] = null
                     }
                 }
             },
@@ -37,11 +45,13 @@ export default defineComponent({
     },
     methods: {
         inputEvent(event: Event, index: number) {
+            console.log(event)
             let nextElement = (event.currentTarget as HTMLInputElement).nextSibling as HTMLInputElement
             let previousElement = (event.currentTarget as HTMLInputElement).previousSibling as HTMLInputElement
-            if (Number(this.codeBlocks[index]) && nextElement) { 
+            
+            if (Number(this.codeBlocks[index]) && nextElement.focus) { 
                 nextElement.focus()
-            }
+            } 
         },
         async nextStep() {
             let code = this.codeBlocks.join("")
@@ -55,7 +65,12 @@ export default defineComponent({
                 body: JSON.stringify({email: this.state.infos.email, token: code})
             })).json()
 
-            this.state.currentStep = "authCode"
+            Emitter.emit("add-notify", {message: responseData.message})
+            
+            if (responseData.status != "success") return
+
+            this.state.emailToken = responseData["jwt_token"]
+            this.state.currentStep = "infos"
         }
     },
     mounted() {
@@ -68,7 +83,7 @@ export default defineComponent({
 <template>
     <div class="auth-code-component fade" v-if="state.currentStep == 'authCode'">
         <div class="inputs-container">
-            <input type="text" v-for="i in 6" :key="i" v-model="codeBlocks[i]" placeholder="0" @input="inputEvent($event, i)">
+            <input type="text" v-for="i in 6" :key="i" v-model="codeBlocks[i]" placeholder="0" @keyup="inputEvent($event, i)">
         </div>
 
         <Button text="Prosseguir" color="70, 157, 221" style="width: 100%; margin-top: 20px;" icon="fa-duotone fa-arrow-right-to-arc" @click="nextStep()"/>
