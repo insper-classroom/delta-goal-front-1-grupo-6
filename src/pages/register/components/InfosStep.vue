@@ -30,13 +30,21 @@ export default defineComponent({
                 }
             }
 
+            if (this.repeatPwd != this.state.infos.password) {
+                return Emitter.emit("add-notify", {message: "Senhas não coincidem."})
+            }
+
             let responseData = await (await fetch(config.serverUrl + "/register/user", {
                 method: "POST",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({email: this.state.infos.email})
+                body: JSON.stringify({
+                    email_token: this.state.emailToken, 
+                    club_name: this.state.infos.clubName,
+                    password: this.state.infos.password
+                })
             })).json()
 
             Emitter.emit("add-notify", {message: responseData.message}) 
@@ -61,7 +69,7 @@ export default defineComponent({
         <Input text="Senha" v-model="state.infos.password"/>
         <Input text="Repetir senha" v-model="repeatPwd"/>
 
-        <Button text="Finalizar cadastro" color="70, 157, 221" style="width: 100%; margin-top: 20px;" icon="fa-duotone fa-arrow-right-to-arc" @click="registerUser()"/>
+        <Button text="Finalizar cadastro" color="70, 157, 221" style="width: 100%; margin-top: 10px;" icon="fa-duotone fa-arrow-right-to-arc" @click="registerUser()"/>
     </div>
 </template>
 
@@ -70,6 +78,7 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         margin-top: 20px;
+        gap: 10px;
         
     }
 

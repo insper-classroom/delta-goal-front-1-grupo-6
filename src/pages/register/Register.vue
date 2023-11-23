@@ -5,6 +5,7 @@ import Input from '@/shared/Input.vue';
 import { StateInterface, useState } from './state/State';
 import EmailStep from './components/EmailStep.vue';
 import AuthCodeStep from './components/AuthCodeStep.vue';
+import InfosStep from './components/InfosStep.vue';
 
 interface DataInterface {
     state: StateInterface
@@ -20,7 +21,8 @@ export default defineComponent({
         Button,
         Input,
         EmailStep,
-        AuthCodeStep
+        AuthCodeStep,
+        InfosStep
     },
     methods: {
 
@@ -49,6 +51,7 @@ export default defineComponent({
 
             <EmailStep />
             <AuthCodeStep />
+            <InfosStep />
 
             <p class="login-account-text">Já tem uma conta? <a href="">Fazer login</a></p>
         </aside>
