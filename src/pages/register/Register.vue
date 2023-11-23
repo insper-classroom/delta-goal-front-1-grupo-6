@@ -2,12 +2,26 @@
 import { defineComponent } from 'vue';
 import Button from '@/shared/Button.vue';
 import Input from '@/shared/Input.vue';
+import { StateInterface, useState } from './state/State';
+import EmailStep from './components/EmailStep.vue';
+import AuthCode from './components/AuthCode.vue';
+
+interface DataInterface {
+    state: StateInterface
+}
 
 export default defineComponent({
-    components: {
-        Button,
-        Input
+    data(): DataInterface {
+        return {
+            state: useState()
+        }
     },
+    components: {
+    Button,
+    Input,
+    EmailStep,
+    AuthCode
+},
     methods: {
 
     },
@@ -19,17 +33,24 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="login-component">
+    <div class="register-component">
         <aside class="form-container">
-            <div class="title-container">
-                <h1>Login</h1>
-                <!-- texto obtido do site delta goal -->
-                <p>Entre na nossa plataforma e desfrute de todo o poder da nossa inteligência artificial para melhorar a performance de seus jogadores e atletas.</p>
+            <div class="steps-container">
+                <p :class="{active: state.currentStep == 'email'}">1</p>
+                <span></span>
+                <p :class="{active: state.currentStep == 'authCode'}">2</p>
+                <span></span>
+                <p :class="{active: state.currentStep == 'infos'}">3</p>
             </div>
-            <Input text="Email" style="margin-top: 20px;"/>
-            <Input text="Senha" style="margin-top: 10px;"/>
-            <Button text="Fazer login" color="70, 157, 221" style="width: 100%; margin-top: 20px;" icon="fa-duotone fa-arrow-right-to-arc" />
-            <p class="create-account-text">Não tem cadastro? <a href="">Criar conta</a></p>
+            <div class="title-container">
+                <h1>Cadastro</h1>
+                <p>Cadastra-se na nossa plataforma e desfrute de todo o poder da nossa inteligência artificial para melhorar a performance de seus jogadores e atletas.</p>
+            </div>
+
+            <EmailStep />
+            <AuthCode />
+
+            <p class="login-account-text">Já tem uma conta? <a href="">Fazer login</a></p>
         </aside>
         <aside class="about-container">
             <img src="https://lirp.cdn-website.com/25aaefc0/dms3rep/multi/opt/logo-1920w.png" class="logo">
@@ -45,7 +66,7 @@ export default defineComponent({
 </template>
 
 <style scoped>
-    .login-component {
+    .register-component {
         height: 100%;
         width: 100%;
         display: grid;
@@ -123,14 +144,49 @@ export default defineComponent({
         margin-top: 10px;
     }
 
-    .create-account-text {
+    .login-account-text {
         margin: 0px auto;
         margin-top: 10px;
         color: rgba(0, 0, 0, 0.5);
     }
 
-    .create-account-text a {
+    .login-account-text a {
         color: rgba(0, 0, 0, 0.6);
         font-weight: 600;
+    }
+
+    /* ------------------------------- */
+
+    .steps-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .steps-container p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        min-width: 30px;
+        width: 30px;
+        background-color: rgba(70, 157, 221, .1);
+        border-radius: 100px;
+        color: rgba(70, 157, 221, 1);
+        font-weight: 600;
+        border: dashed 1px rgba(70, 157, 221, 1);
+    }
+
+    .steps-container .active {
+        border: solid 1px transparent;
+        background-color: rgba(70, 157, 221, 1);
+        color: white;
+    }
+
+    .steps-container span {
+        width: 100%;
+        height: 1px;
+        border: dashed 1px rgba(0, 0, 0, 0.2);
+        margin: 0px 20px;
     }
 </style>

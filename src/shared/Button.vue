@@ -44,7 +44,7 @@ export default defineComponent({
         padding: 0px 20px;
         height: 40px;
         min-height: 40px;
-        border-radius: 8px;
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;

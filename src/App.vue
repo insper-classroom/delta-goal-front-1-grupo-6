@@ -1,11 +1,12 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
+import Toast from './plugin/Toast.vue';
 
 export default defineComponent({ 
     data() {
         return {}
     },
-    components: {  },
+    components: { Toast },
     async mounted() {
         
         
@@ -14,6 +15,7 @@ export default defineComponent({
 </script>
 
 <template>
+    <Toast />
     <div id="root">
         <router-view></router-view>>
     </div>
