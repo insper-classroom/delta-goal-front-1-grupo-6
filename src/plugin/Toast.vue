@@ -89,7 +89,7 @@ export default defineComponent({
         font-family: "Poppins";
         box-sizing: border-box;
         font-weight: 400;
-        max-width: calc(100vw - 40px);
+        max-width: 400px;
         background: rgba(70, 157, 221, 1);
     }
 

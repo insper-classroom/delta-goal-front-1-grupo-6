@@ -4,6 +4,7 @@ import Button from '@/shared/Button.vue';
 import Input from '@/shared/Input.vue';
 import { StateInterface, useState } from '../state/State';
 import { Emitter } from '@/emitter/Emitter';
+import { config } from '@/constants/config';
 
 interface DataInterface {
     state: StateInterface
@@ -42,8 +43,17 @@ export default defineComponent({
                 nextElement.focus()
             }
         },
-        nextStep() {
+        async nextStep() {
             let code = this.codeBlocks.join("")
+
+            let responseData = await (await fetch(config.serverUrl + "/email/validate", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({email: this.state.infos.email, token: code})
+            })).json()
 
             this.state.currentStep = "authCode"
         }

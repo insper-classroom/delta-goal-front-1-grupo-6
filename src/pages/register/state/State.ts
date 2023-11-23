@@ -6,6 +6,7 @@ let defaultState: StateInterface = {
         password: "",
         email: ""
     },
+    emailToken: "",
     currentStep: "email"
 }
 
@@ -22,5 +23,6 @@ export interface StateInterface {
         password: string,
         email: string
     },
+    emailToken: string
     currentStep: "email" | "authCode" | "infos"
 }
