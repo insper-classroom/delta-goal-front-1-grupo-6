@@ -43,9 +43,7 @@ export default defineComponent({
             }
         },
         nextStep() {
-            if (!this.state.infos.email) {
-                return Emitter.emit("add-notify", {message: "Preencha seu email para prosseguir"})
-            }
+            let code = this.codeBlocks.join("")
 
             this.state.currentStep = "authCode"
         }

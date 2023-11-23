@@ -4,7 +4,6 @@ import Button from '@/shared/Button.vue';
 import Input from '@/shared/Input.vue';
 import { StateInterface, useState } from '../state/State';
 import { Emitter } from '@/emitter/Emitter';
-import { config } from '../../../constants/config';
 
 interface DataInterface {
     state: StateInterface
@@ -21,23 +20,9 @@ export default defineComponent({
         Input,
     },
     methods: {
-        async nextStep() {
+        nextStep() {
             if (!this.state.infos.email) {
                 return Emitter.emit("add-notify", {message: "Preencha seu email para prosseguir"})
-            }
-
-            let responseData = await (await fetch(config.serverUrl + "/email/send", {
-                method: "POST",
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({email: this.state.infos.email})
-            })).json()
-
-            Emitter.emit("add-notify", {message: responseData.message})
-            if (responseData.status != "success") {
-                return 
             }
 
             this.state.currentStep = "authCode"
@@ -51,7 +36,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="email-step-component fade" v-if="state.currentStep == 'email'">
+    <div class="email-step-component fade" v-if="state.currentStep == 'infos'">
         <Input text="Email" v-model="state.infos.email"/>
 
         <Button text="Prosseguir" color="70, 157, 221" style="width: 100%; margin-top: 20px;" icon="fa-duotone fa-arrow-right-to-arc" @click="nextStep()"/>
