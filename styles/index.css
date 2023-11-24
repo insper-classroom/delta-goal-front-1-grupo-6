@@ -1,0 +1,64 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+    -webkit-font-smoothing: antialiased;
+    font-family: "poppins";
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* =========================================================== */
+
+/* ref scrollbar: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 100px;
+    overflow: hidden;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all .5s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+i {
+    width: fit-content;
+}
+
+/* ref: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
