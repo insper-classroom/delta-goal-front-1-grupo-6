@@ -1,33 +1,26 @@
-let errorToast = 
 async function login() {
     let password = document.querySelector("#password").value
     let email = document.querySelector("#email").value
 
     if (!password || !email) {
-        return 
+        return toast("Preencha todas as informações", "error")
     }
 
-    let responseData = await (await fetch(config.serverUrl + "/email/validate", {
+    let responseData = await (await fetch("http://127.0.0.1:5500/login", {
         method: "POST",
         headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({email: this.state.infos.email, token: code})
+        body: JSON.stringify({email: email, password: password})
     })).json()
     
-    errorToast.showToast()
-
-    Toastify({
-        text: "dsa",
-        style: {
-            borderRadius: "5px",
-            background: "rgba(214, 83, 65, 1)"
-        }
-    }).showToast()
     
-
+    toast(responseData.message, responseData.status)
     if (responseData.status != "success") return
+
+    localStorage.setItem("token", responseData.jwt_token)
+
+    window.location.href = "/dashboard.html"
+
+
 }
-
-
