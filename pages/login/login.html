@@ -15,27 +15,44 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <main class="content">
-        <div class="title-container">
-            <h1>Login <img src="../../assets/logo.png" class="logo"></h1>
+        <aside class="login-container">
+            <div class="title-container">
+                <h1>Login</h1>
+                <!-- texto obtido do site delta goal -->
+                <p>Entre na nossa plataforma e desfrute de todo o poder da nossa inteligência artificial para melhorar a performance de seus jogadores e atletas.</p>
+            </div>
+    
+            <div class="ui left icon input" style="margin-top: 20px;">
+                <input type="text" id="email" placeholder="Email">
+                <i class="envelope icon"></i>
+            </div>
+            <div class="ui left icon input" style="margin-top: 10px;">
+                <input type="password" id="password" placeholder="Senha">
+                <i class="lock icon"></i>
+            </div>
+            
+            <div style="display: flex; align-items: center; margin-top: 20px;">
+                <button class="ui primary button" style="width: fit-content;" onclick="login()">Entrar</button>
+                <p class="forgot-password">Esqueci minha senha</p>
+            </div>
+        </aside>
+        <aside class="about-container">
+            <img src="https://lirp.cdn-website.com/25aaefc0/dms3rep/multi/opt/logo-1920w.png" class="logo">
             <!-- texto obtido do site delta goal -->
-            <p>Entre na nossa plataforma e desfrute de todo o poder da nossa inteligência artificial para melhorar a performance de seus jogadores e atletas.</p>
-        </div>
-
-        <div class="ui left icon input" style="margin-top: 20px;">
-            <input type="text" id="email" placeholder="Email">
-            <i class="envelope icon"></i>
-        </div>
-        <div class="ui left icon input" style="margin-top: 10px;">
-            <input type="password" id="password" placeholder="Senha">
-            <i class="lock icon"></i>
-        </div>
+            <p class="description-text">Our tool utilizes Artificial Intelligence to analyze the field and interpret the player's behavior, taking into account their movements and engagement with and without the ball. This provides the teams valuable insights into their tactical approach and enhances their gameplay</p>
         
-        <button class="ui primary button" style="margin-top: 20px;" onclick="login()">Entrar</button>
+            
+            <div class="background-container">
+                <video loop muted autoplay src="https://vid.cdn-website.com/25aaefc0/videos/xv15E24QR1Wi0Yiy8UBM_b-v.mp4"></video>
+            </div>
+        </aside>
     </main>
 
+    <script src="../../common/toast.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

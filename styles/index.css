@@ -17,7 +17,6 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    font-size: 12px;
 }
 
 #app {
@@ -56,9 +55,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
 }
