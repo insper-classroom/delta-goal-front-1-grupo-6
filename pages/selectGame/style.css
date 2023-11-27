@@ -1,7 +1,104 @@
-.content {
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    width: 100%;
-    height: 100%;
+.logo {
+    width: 15%;
+    height: 15%;
+    padding-left: 5%;
+    padding-top: 0.5%;
 }
 
+.header {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;    
+}
+
+.username {
+    color: white;
+    margin-right: 35px;
+    padding-top: 12px;
+}
+
+.logout {
+    margin-right: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+}
+
+.logout:hover {
+    background-color: grey;
+    color: white;
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    flex-direction: column;
+}
+
+.title-container {
+    text-align: center;
+}
+
+.title {
+    padding-top: 3%;
+    font-size: 34px;  
+    margin-bottom: 15px;  
+}
+
+.subtitle {
+    font-size: 15px;
+}
+
+.games-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #333;
+    padding: 10px;
+    margin-top: 15%;
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.game-name {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.game-date {
+    font-size: 15px;
+}
+
+.game-actions {
+    padding: 40px 40px;
+    background-image: url('../../assets/frame_game.png');
+    background-size: cover; 
+    background-position: center; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-top: 10%;
+}
