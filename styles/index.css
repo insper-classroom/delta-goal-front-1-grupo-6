@@ -34,11 +34,12 @@ body {
     overflow: hidden;
     border-radius: 100px;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     transition: all .5s;
 }
 
