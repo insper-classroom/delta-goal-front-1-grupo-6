@@ -133,3 +133,29 @@ aside:first-child {
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 12px;
 }
+
+.soccer-field-container .right-marks-container {
+    height: 100%;
+    width: 26%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 56px 40px 34px 34px 40px 56px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 22px;
+    
+}
+
+.right-marks-container div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px red;
+    color: white;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+}
+
