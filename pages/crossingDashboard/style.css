@@ -64,21 +64,17 @@
 
 /* ------------------------------- */
 
-.title-container {
-    text-align: start;
-    width: 100%;
-
-}
-
-.title-container h1 {
-    font-size: 20px;  
+.title {
+    font-size: 32px;  
     margin: 0px;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 20px !important;
 }
 
-.title-container p {
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
+.subtitle {
+    font-weight: 600;
+    color: black;
+    font-size: 16px;
 }
 
 aside {
@@ -159,3 +155,50 @@ aside:first-child {
     font-size: 12px;
 }
 
+/* -------------------------------------------------- */
+
+.players-emphasis-container {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.players-emphasis-container .team:first-child {
+    border-right: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.players-emphasis-container .team {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.team .player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team .player .player-icon {
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team .player p {
+    color: black;
+    font-weight: 500;
+}
+
+.team .player span {
+    margin-left: auto !important;
+}
+
+.team .player span i {
+    color: rgb(10, 173, 26);
+}
