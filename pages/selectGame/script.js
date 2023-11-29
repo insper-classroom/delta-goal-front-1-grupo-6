@@ -1,0 +1,1 @@
+document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
