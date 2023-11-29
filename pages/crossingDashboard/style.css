@@ -58,13 +58,12 @@
     height: calc(100% - 80px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 20px;
 
 }
 
 /* ------------------------------- */
 
-.change-dash {
+.change-dash-container {
     display: flex;
     align-items: center;
     font-weight: 600;
@@ -76,15 +75,22 @@
     gap: 10px;
 }
 
-.crossing-dash, .defensive-dash {
+.change-dash-container .option {
     cursor: pointer;
     border-bottom: 3px solid transparent; 
     transition: border-bottom 0.3s ease; 
+    border: solid 1px black;
+    padding: 10px 15px;
+    border-radius: 1000px;
 }
 
-.crossing-dash:hover, .defensive-dash:hover {
-    border-bottom: 3px solid #333; 
+.change-dash-container .active {
+    color: white;
+    background-color: black;
 }
+
+
+/* -------------------------------------------- */
 
 .title {
     font-size: 32px;  
@@ -131,7 +137,6 @@ aside:last-child {
     border-radius: 10px;
     overflow: hidden;
     margin: auto;
-    margin-top: 20px;
 }
 
 .soccer-field-container .left-marks-container {

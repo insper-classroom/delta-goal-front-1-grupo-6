@@ -5,10 +5,10 @@ function logout() {
     window.location.href = "/pages/login/login.html"
 }
 
-function defensiveDash(id) {
-    window.location.href = "/pages/defensiveBreakthrough/defensiveBreakthrough.html?id=" + id
+function goToDefensiveDashboard() {
+    // ref: https://www.sitepoint.com/get-url-parameters-with-javascript/
+    let params = new URLSearchParams(window.location.search)    
+
+    window.location.href = "/pages/defensiveBreakthrough/defensiveBreakthrough.html?id=" + params.get("id")
 }
 
-document.querySelector(".defensive-dash").onclick = function() {
-    defensiveDash() 
-}
