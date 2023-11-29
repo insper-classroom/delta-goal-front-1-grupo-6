@@ -19,8 +19,9 @@ async function login() {
     if (responseData.status != "success") return
 
     localStorage.setItem("token", responseData.jwt_token)
+    localStorage.setItem("club_name", responseData.club_name)
 
-    window.location.href = "/dashboard.html"
+    window.location.href = "/pages/selectGame/selectGame.html"
 }
 
 async function forgotPwd() {
