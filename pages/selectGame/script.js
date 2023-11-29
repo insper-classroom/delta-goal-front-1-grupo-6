@@ -28,7 +28,7 @@ async function getGames() {
                 <p class="name">${matches[i].match_name}</p>
                 <p class="date">${matches[i].date}</p>
             </div>
-            <button class="ui button primary" onclick="dash()">Analisar</button>
+            <button class="ui button primary" onclick="goToDashboard('${matches[i]._id}')">Analisar</button>
         </div>
         `
     }
@@ -36,6 +36,6 @@ async function getGames() {
 
 getGames()
 
-function dash() {
-    window.location.href = "/pages/crossingDashboard/crossingDashboard.html"
+function goToDashboard(id) {
+    window.location.href = "/pages/crossingDashboard/crossingDashboard.html?id=" + id
 }
