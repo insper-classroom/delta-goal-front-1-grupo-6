@@ -63,6 +63,27 @@
 }
 
 /* ------------------------------- */
+.change-dash {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto !important;
+    padding: 0px 20px;
+    padding-top: 15px;
+    gap: 10px;
+}
+
+.crossing-dash, .defensive-dash {
+    cursor: pointer;
+    border-bottom: 3px solid transparent; 
+    transition: border-bottom 0.3s ease; 
+}
+
+.crossing-dash:hover, .defensive-dash:hover {
+    border-bottom: 3px solid #333; 
+}
 
 .title {
     font-size: 32px;  
@@ -85,7 +106,14 @@ aside {
 
 aside:first-child {
     border-left: none;
+    padding-left: 0px;
 }
+
+
+aside:last-child {
+    padding-right: 0px;
+}
+
 
 /* ---------------------------------------- */
 
