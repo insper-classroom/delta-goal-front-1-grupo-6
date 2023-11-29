@@ -28,10 +28,14 @@ async function getGames() {
                 <p class="name">${matches[i].match_name}</p>
                 <p class="date">${matches[i].date}</p>
             </div>
-            <button class="ui button primary">Analisar</button>
+            <button class="ui button primary" onclick="dash()">Analisar</button>
         </div>
         `
     }
 }
 
 getGames()
+
+function dash() {
+    window.location.href = "/pages/crossingDashboard/crossingDashboard.html"
+}
