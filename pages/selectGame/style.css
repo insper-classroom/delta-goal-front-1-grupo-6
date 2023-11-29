@@ -52,10 +52,11 @@
 .content {
     width: 100%;
     max-width: 1000px;
-    margin: auto;
+    margin: auto !important;
     padding: 0px 20px;
     overflow: hidden;
     height: calc(100% - 80px);
+    padding-top: 20px;
 
 }
 
@@ -118,8 +119,8 @@
 .game-unit img {
     height: 100px;
     object-fit: cover;
-    mask: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(18,18,18,1) 57%);
-    -webkit-mask: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(18,18,18,1) 57%);
+    mask: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 57%);
+    -webkit-mask: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 57%);
 }
 
 .info {
@@ -128,7 +129,7 @@
     justify-content: center;
     flex-direction: column;
     padding: 10px;
-    margin-top: auto;
+    margin-top: auto !important;
     color: white;
     border-radius: 15px;
     
