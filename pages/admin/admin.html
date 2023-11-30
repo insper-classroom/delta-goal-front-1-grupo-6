@@ -19,19 +19,19 @@
 </head>
 <body>
     <main>
-        <form id="form" class="ui form">
+        <form id="form" class="ui form" enctype="multipart/form-data">
             <h1 class="ui header">Cadastrar Jogos</h1>
             <div class="field">
-              <label>Nome do jogo</label>
+              <label for="match_name">Nome do jogo</label>
               <input required id="match_name" type="text" name="match_name" placeholder="Nome do jogo">
             </div>
             <div class="field">
-              <label>Data do jogo</label>
+              <label for="match_date">Data do jogo</label>
               <input required id="match_date" type="date" name="match_date">
             </div>
             <div class="field">
-                <label>Arquivo csv</label>
-              <input required id="csv" type="file">
+                <label for="csv">Arquivo csv</label>
+              <input name="csv" required id="csv" type="file">
             </div>
             <input id="send" class="ui primary button" type="submit" value="Enviar">
           </form>

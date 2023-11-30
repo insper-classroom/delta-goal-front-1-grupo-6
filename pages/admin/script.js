@@ -17,13 +17,14 @@ document.getElementById('form').addEventListener('submit', function(event) {
     if(verification_blank()){
         const formData = new FormData(event.target);
 
+        for (const pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+
         const backendURL = 'http://127.0.0.1:5501/csv';
 
         fetch(backendURL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
             body: formData
         })
         .then(response => {
@@ -33,11 +34,6 @@ document.getElementById('form').addEventListener('submit', function(event) {
                 throw new Error(`Erro na requisição: ${response.status}`);
             }
         })
-        .then(data => {
-            console.log('Resposta do backend:', data);
-        
-        })
-        .catch(error => console.error('Erro:', error));
     }
     
 });
