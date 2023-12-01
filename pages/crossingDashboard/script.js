@@ -119,6 +119,9 @@ async function getMatchDetails() {
     team1Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]] 
     team2Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[1]]
     
+    let gameVideo = document.querySelector(".game-video")
+    gameVideo.src = responseData.match.video_url
+
     renderCrossingList()
 }
 

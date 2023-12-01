@@ -56,7 +56,7 @@
     margin: auto !important;
     padding: 0px 20px;
     overflow: hidden;
-    height: calc(100% - 80px);
+    height: calc(100% - 100px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
