@@ -2,6 +2,7 @@ google.charts.load('current', {'packages':['corechart']});
 
 let team1Data = undefined
 let team2Data = undefined
+let gameVideoUrl = ""
 
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
@@ -62,28 +63,82 @@ function renderOutcomeCharts(data) {
 
 }
 
+function selectCrossing(whichTeam, cIndex) {
+    let teamData;
+    if (whichTeam == "team1") {
+        teamData = team1Data
+    } else {
+        teamData = team2Data
+    }
+
+    let crossing = teamData.rupturas[cIndex]
+
+    let infosContainer = document.querySelector(".selected-crossing-infos")
+
+    let outcomeColor = "182, 253, 157"
+
+    if (crossing.desfecho == "Perdido") {
+        outcomeColor = "248, 147, 97"
+    } else if (crossing.desfecho == "Bloqueado") {
+        outcomeColor = "254, 148, 181"
+    }
+
+    infosContainer.innerHTML = `
+        <p class="team-name">${team1Data.nome.slice(0, 3).toUpperCase()}</p>
+        <p class="index">Cruzamento #${Number(cIndex) + 1}</p>
+        <p class="outcome" style="background-color: rgba(${outcomeColor})">Perdido</p>
+    `
+
+    let gameVideo = document.querySelector(".game-video")
+
+    let seconds = Number(crossing.instante_cruzamento.split(":")[0]) * 60 * 60 +  Number(crossing.instante_cruzamento.split(":")[1]) * 60 + Number(crossing.instante_cruzamento.split(":")[2]) 
+
+    gameVideo.src = gameVideoUrl + "?t=" + seconds
+
+    console.log(crossing, seconds)
+}
+
+
 function renderCrossingList() {
     let container = document.querySelector(".crossing-list-container")
 
     for (let i in team1Data.rupturas) {
+        let outcomeColor = "182, 253, 157"
+
+        if (team1Data.rupturas[i].desfecho == "Perdido") {
+            outcomeColor = "248, 147, 97"
+        } else if (team1Data.rupturas[i].desfecho == "Bloqueado") {
+            outcomeColor = "254, 148, 181"
+        }
+
         container.innerHTML += `
-        <div class="item">
+        <div class="item" onclick="selectCrossing('team1', '${i}')">
             <p class="name">${team1Data.nome.slice(0, 3).toUpperCase()}</p>
-            <p class="crossing-index">Cruzamento #${Number(i) + 1}</p>
+            <p class="crossing-index"> #${Number(i) + 1}</p>
             <p class="time">${team1Data.rupturas[i].instante_cruzamento}</p>
             <div class="zone">ZONA ${team1Data.rupturas[i].zona}</div>
+            <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${team1Data.rupturas[i].desfecho}</div>
         </div>
         `
-    }
-    
-    for (let i in team2Data.rupturas) {
-        container.innerHTML += `
-        <div class="item">
-            <p class="name">${team2Data.nome.slice(0, 3).toUpperCase()}</p>
-            <p class="crossing-index">Cruzamento #${Number(i) + 1}</p>
-            <p class="time">${team2Data.rupturas[i].instante_cruzamento}</p>
-            <div class="zone">ZONA ${team2Data.rupturas[i].zona}</div>
-        </div>
+        }
+        
+        for (let i in team2Data.rupturas) {
+            let outcomeColor = "182, 253, 157"
+            
+            if (team2Data.rupturas[i].desfecho == "Perdido") {
+                outcomeColor = "248, 147, 97"
+            } else if (team2Data.rupturas[i].desfecho == "Bloqueado") {
+                outcomeColor = "254, 148, 181"
+            }
+            
+            container.innerHTML += `
+            <div class="item">
+                <p class="name">${team2Data.nome.slice(0, 3).toUpperCase()}</p>
+                <p class="crossing-index">#${Number(i) + 1}</p>
+                <p class="time">${team2Data.rupturas[i].instante_cruzamento}</p>
+                <div class="zone">ZONA ${team2Data.rupturas[i].zona}</div>
+                <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${team2Data.rupturas[i].desfecho}</div>
+            </div>
         `
     }
 }
@@ -120,9 +175,12 @@ async function getMatchDetails() {
     team2Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[1]]
     
     let gameVideo = document.querySelector(".game-video")
+    gameVideoUrl = responseData.match.video_url
     gameVideo.src = responseData.match.video_url
 
     renderCrossingList()
+    selectCrossing("team1", 0)
 }
 
 getMatchDetails()
+

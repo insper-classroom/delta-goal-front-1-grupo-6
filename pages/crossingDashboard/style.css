@@ -294,4 +294,39 @@ aside:last-child {
     background-color: rgba(158, 207, 218, 1);
 }
 
+.crossing-list-container .outcome {
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background-color: rgba(158, 207, 218, 1);
+}
 
+/* -------------------------------------------------------- */
+
+.selected-crossing-infos {
+    width: 100%;
+    display: flex;
+    margin-top: 20px !important;
+    align-items: center;
+}
+
+.selected-crossing-infos .outcome {
+    margin-left: auto !important;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background-color: rgba(158, 207, 218, 1);
+}
+
+.selected-crossing-infos .team-name {
+    background-color: black;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 100px;
+    color: white;
+}
+
+.selected-crossing-infos .index {
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 10px !important;
+}
