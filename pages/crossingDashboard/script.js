@@ -93,7 +93,7 @@ function selectCrossing(whichTeam, cIndex) {
 
     let seconds = Number(crossing.instante_cruzamento.split(":")[0]) * 60 * 60 +  Number(crossing.instante_cruzamento.split(":")[1]) * 60 + Number(crossing.instante_cruzamento.split(":")[2]) 
 
-    gameVideo.src = gameVideoUrl + "?t=" + seconds
+    gameVideo.src = gameVideoUrl + "?t=" + (seconds - 5)
 
     console.log(crossing, seconds)
 }
