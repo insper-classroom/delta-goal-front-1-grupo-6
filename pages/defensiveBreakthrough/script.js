@@ -5,8 +5,10 @@ function logout() {
     window.location.href = "/pages/login/login.html"
 }
 
-function crossingDash(id) {
-    window.location.href = "/pages/crossingDashboard/crossingDashboard.html?id=" + id
+function goToCrossingDashboard() {
+    let params = new URLSearchParams(window.location.search)    
+
+    window.location.href = "/pages/crossingDashboard/crossingDashboard.html?id=" + params.get("id")
 }
 
 document.querySelector(".crossing-dash").onclick = function() {
