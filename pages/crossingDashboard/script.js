@@ -95,7 +95,23 @@ function selectCrossing(whichTeam, cIndex) {
 
     gameVideo.src = gameVideoUrl + "?t=" + (seconds - 5)
 
-    console.log(crossing, seconds)
+    let defendingContainer = document.querySelector(".defending-players")
+    defendingContainer.innerHTML = ""
+    for (name of crossing.nome_jogadores_time_defendendo.split(",")) {
+        defendingContainer.innerHTML += `
+            <p><i class="bi bi-person-fill"></i> ${name} </p>
+        `
+    }
+
+    let attackingContainer = document.querySelector(".attacking-players")
+    attackingContainer.innerHTML = ""
+    for (name of crossing.nome_jogadores_time_cruzando.split(",")) {
+        attackingContainer.innerHTML += `
+        <p><i class="bi bi-person-fill"></i> ${name} </p>
+        `
+    }
+    
+    console.log(crossing)
 }
 
 
