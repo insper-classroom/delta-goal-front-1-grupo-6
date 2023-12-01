@@ -1,5 +1,8 @@
 google.charts.load('current', {'packages':['corechart']});
 
+let team1Data = undefined
+let team2Data = undefined
+
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
 function logout() {
@@ -50,11 +53,39 @@ function getOutcomeChartData(data) {
 
 function renderOutcomeCharts(data) {
     let team1ChartData = google.visualization.arrayToDataTable([["Desfecho", "Quantidade"], ...getOutcomeChartData(data.match.json_cruzamento.time[Object.keys(data.match.json_cruzamento.time)[0]].rupturas)])
-    let team2ChartData = google.visualization.arrayToDataTable([["Desfecho", "Quantidade"], ...getOutcomeChartData(data.match.json_cruzamento.time[Object.keys(data.match.json_cruzamento.time)[1]].rupturas)])
-
     let chart1 = new google.visualization.PieChart(document.getElementById('team1-piechart'));
     chart1.draw(team1ChartData, {})
+    
+    let team2ChartData = google.visualization.arrayToDataTable([["Desfecho", "Quantidade"], ...getOutcomeChartData(data.match.json_cruzamento.time[Object.keys(data.match.json_cruzamento.time)[1]].rupturas)])
+    let chart2 = new google.visualization.PieChart(document.getElementById('team2-piechart'));
+    chart2.draw(team2ChartData, {})
 
+}
+
+function renderCrossingList() {
+    let container = document.querySelector(".crossing-list-container")
+
+    for (let i in team1Data.rupturas) {
+        container.innerHTML += `
+        <div class="item">
+            <p class="name">${team1Data.nome.slice(0, 3).toUpperCase()}</p>
+            <p class="crossing-index">Cruzamento #${Number(i) + 1}</p>
+            <p class="time">${team1Data.rupturas[i].instante_cruzamento}</p>
+            <div class="zone">ZONA ${team1Data.rupturas[i].zona}</div>
+        </div>
+        `
+    }
+    
+    for (let i in team2Data.rupturas) {
+        container.innerHTML += `
+        <div class="item">
+            <p class="name">${team2Data.nome.slice(0, 3).toUpperCase()}</p>
+            <p class="crossing-index">Cruzamento #${Number(i) + 1}</p>
+            <p class="time">${team2Data.rupturas[i].instante_cruzamento}</p>
+            <div class="zone">ZONA ${team2Data.rupturas[i].zona}</div>
+        </div>
+        `
+    }
 }
 
 async function getMatchDetails() {
@@ -79,8 +110,16 @@ async function getMatchDetails() {
     let team2Name = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[1]].nome
 
     document.querySelector("#team1-outcome-title").textContent = `Desfechos ${team1Name}`
+    document.querySelector("#team2-outcome-title").textContent = `Desfechos ${team2Name}`
 
-    renderOutcomeCharts(responseData)
+    setTimeout(() => {
+        renderOutcomeCharts(responseData)
+    }, 1000)
+
+    team1Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]] 
+    team2Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[1]]
+    
+    renderCrossingList()
 }
 
 getMatchDetails()
