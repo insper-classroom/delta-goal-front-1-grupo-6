@@ -58,6 +58,13 @@
     height: calc(100% - 80px);
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow-y: scroll;
+
+}
+
+.content::-webkit-scrollbar {
+    width: 0px !important;
+    
 }
 
 /* ------------------------------- */
@@ -72,6 +79,7 @@
     padding: 0px 20px;
     padding-top: 15px;
     gap: 10px;
+    margin-bottom: 20px !important;
 }
 
 .change-dash-container .option {
@@ -108,6 +116,7 @@ aside {
     width: 100%;
     border-left: solid 1px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    padding-top: 0px;
 }
 
 aside:first-child {
