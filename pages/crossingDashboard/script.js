@@ -84,7 +84,7 @@ function selectCrossing(whichTeam, cIndex) {
     }
 
     infosContainer.innerHTML = `
-        <p class="team-name">${team1Data.nome.slice(0, 3).toUpperCase()}</p>
+        <p class="team-name">${teamData.nome.slice(0, 3).toUpperCase()}</p>
         <p class="index">Cruzamento #${Number(cIndex) + 1}</p>
         <p class="outcome" style="background-color: rgba(${outcomeColor})">Perdido</p>
     `
@@ -148,7 +148,7 @@ function renderCrossingList() {
             }
             
             container.innerHTML += `
-            <div class="item">
+            <div class="item" onclick="selectCrossing('team2', '${i}')">
                 <p class="name">${team2Data.nome.slice(0, 3).toUpperCase()}</p>
                 <p class="crossing-index">#${Number(i) + 1}</p>
                 <p class="time">${team2Data.rupturas[i].instante_cruzamento}</p>
