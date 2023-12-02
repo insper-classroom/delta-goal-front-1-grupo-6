@@ -110,8 +110,6 @@ function selectCrossing(whichTeam, cIndex) {
         <p><i class="bi bi-person-fill"></i> ${name} </p>
         `
     }
-    
-    console.log(crossing)
 }
 
 
@@ -159,6 +157,64 @@ function renderCrossingList() {
     }
 }
 
+async function renderEmphasisPlayers(team) {
+    let teamData;
+    if (team == "team1") {
+        teamData = team1Data
+    } else {
+        teamData = team2Data
+    }
+
+    let teamPlayers = {}
+
+    for (cro of teamData.rupturas) {
+        let players = cro.nome_jogadores_time_cruzando.split(",")
+
+        for (pl of players) {
+            if (!Object.keys(teamPlayers).includes(pl)) {
+                teamPlayers[pl] = 1
+            } else {
+                teamPlayers[pl] += 1
+            }
+        }
+    }
+
+    let teamPlayersCrossAmount = Object.values(teamPlayers).sort((a, b)=>a-b).reverse()
+    let teamPlayersName = []
+
+    for (name in teamPlayers) {
+        let i = teamPlayersCrossAmount.indexOf(teamPlayers[name])
+        
+        while (teamPlayersName[i]) {
+            i += 1
+        }
+
+        teamPlayersName[i] = name
+    }
+
+    teamPlayersName = teamPlayersName.slice(0, 4)
+
+    let container = document.querySelector(`.${team}-emphasis`)
+    let playersHTML = ""
+
+    for (name of teamPlayersName) {
+        playersHTML += `
+        <div class="player">
+            <i class="bi bi-person-fill player-icon"></i>
+            <p>${name}</p>
+
+            <span>${teamPlayers[name]} <i class="bi bi-caret-up-fill"></i></span>
+        </div>
+        `
+    }
+
+    container.innerHTML = `
+        <p class="subtitle" style="margin-bottom: 5px !important;">Destaques SEP</p>
+
+        ${playersHTML}    
+    `
+}
+
 async function getMatchDetails() {
     let params = new URLSearchParams(window.location.search)
     let id = params.get("id")
@@ -196,7 +252,12 @@ async function getMatchDetails() {
 
     renderCrossingList()
     selectCrossing("team1", 0)
+
+    renderEmphasisPlayers("team1")
+    renderEmphasisPlayers("team2")
 }
+
+
 
 getMatchDetails()
 

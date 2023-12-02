@@ -7,3 +7,4 @@
 - https://conteudo.solutudo.com.br/solutudo-brasil/solutudo-listas/5-quadras-de-futebol-em-aracaju/ - referencia foto do campo de futebol
 - https://olhardigital.com.br/2023/06/09/internet-e-redes-sociais/selecoes-de-futebol-mais-populares-nas-redes-sociais/ - referencia foto campo de futebol com a bola
 - https://www.sitepoint.com/get-url-parameters-with-javascript/
+- https://pt.stackoverflow.com/questions/9900/como-ordenar-um-array-por-valores
