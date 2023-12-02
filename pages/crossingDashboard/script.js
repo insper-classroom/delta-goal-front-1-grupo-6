@@ -209,7 +209,7 @@ async function renderEmphasisPlayers(team) {
     }
 
     container.innerHTML = `
-        <p class="subtitle" style="margin-bottom: 5px !important;">Destaques SEP</p>
+        <p class="subtitle" style="margin-bottom: 5px !important;">Destaques ${teamData.nome.slice(0, 3).toUpperCase()}</p>
 
         ${playersHTML}    
     `
