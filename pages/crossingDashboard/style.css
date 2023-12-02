@@ -257,6 +257,8 @@ aside:last-child {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 20px;
+    border: solid 1px black;
 }
 
 .crossing-list-container .item {
