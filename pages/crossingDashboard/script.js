@@ -110,6 +110,11 @@ function selectCrossing(whichTeam, cIndex) {
         <p><i class="bi bi-person-fill"></i> ${name} </p>
         `
     }
+
+    let zone = crossing.zona.replace(".", "-")
+
+    $(".active-zone").removeClass("active-zone")
+    $("." +  zone).addClass("active-zone")
 }
 
 

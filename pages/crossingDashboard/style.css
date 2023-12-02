@@ -56,7 +56,7 @@
     margin: auto !important;
     padding: 0px 20px;
     overflow: hidden;
-    height: calc(100% - 100px);
+    height: calc(100% - 160px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
@@ -198,6 +198,11 @@ aside:last-child {
     font-size: 12px;
 }
 
+.active-zone {
+    background-color: rgba(255, 0, 0, 0.6) !important;
+    border: solid 1px yellow !important;
+}
+
 /* -------------------------------------------------- */
 
 .players-emphasis-container {
@@ -270,6 +275,11 @@ aside:last-child {
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: all .2s;
+}
+
+.crossing-list-container .item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .crossing-list-container .name {
