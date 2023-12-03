@@ -12,6 +12,28 @@ function goToCrossingDashboard() {
     window.location.href = "/pages/crossingDashboard/crossingDashboard.html?id=" + params.get("id")
 }
 
+function add10Seconds(originalTime) {
+    var parts = originalTime.split(":");
+    
+    var hours = parseInt(parts[0], 10);
+    var minutes = parseInt(parts[1], 10);
+    var seconds = parseInt(parts[2], 10);
+
+    seconds += 10;
+
+    minutes += Math.floor(seconds / 60);
+    seconds = seconds % 60;
+
+    hours += Math.floor(minutes / 60);
+    minutes = minutes % 60;
+
+    var formattedHours = hours.toString().padStart(2, "0");
+    var formattedMinutes = minutes.toString().padStart(2, "0");
+    var formattedSeconds = seconds.toString().padStart(2, "0");
+
+    return formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
+}
+
 const backendURL = 'http://127.0.0.1:5501/match/6564f369f82e76ba950789ab';
 
 fetch(backendURL, {
@@ -48,6 +70,37 @@ zona1b.innerText = "1.B"+"\n"+~~(json_quebra["zonas"]["Zona 1 - B"]/json_quebra[
 zona1a.innerText = "1.A"+"\n"+~~(json_quebra["zonas"]["Zona 1 - A"]/json_quebra["rupturas"].length*100)+"%";
 zona3a.innerText = "3.A"+"\n"+~~(json_quebra["zonas"]["Zona 3 - A"]/json_quebra["rupturas"].length*100)+"%";
 zona3b.innerText = "3.B"+"\n"+~~(json_quebra["zonas"]["Zona 3 - B"]/json_quebra["rupturas"].length*100)+"%";
+
+let divRupturas = document.getElementById('rupturas');
+
+let htmlConteudo = '';
+
+for (let i = 0; i < json_quebra["top_5"].length; i++) {
+    htmlConteudo += `
+        <div class="player">
+            <i class="bi bi-person-fill player-icon"></i>
+            <p>${json_quebra["top_5"][i]["nome"]}</p>
+            <span>${json_quebra["top_5"][i]["rupturas"]} <i class="bi bi-caret-up-fill"></i></span>
+        </div>`;
+}
+
+divRupturas.innerHTML = htmlConteudo;
+
+let htmlConteudo2 = '';
+
+let listaRupturas = document.getElementById('lista-rupturas');
+
+for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+    htmlConteudo2 += `<div class="item">
+    <p class="name">${localStorage.getItem("club_name")}</p>
+    <p class="crossing-index">${json_quebra["rupturas"][i]["nome_jogador_ruptura"]}</p>
+    <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]} - ${add10Seconds(json_quebra["rupturas"][i]["inicio_ruptura"])}</p>
+    <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+</div>`;
+}
+
+listaRupturas.innerHTML = htmlConteudo2
+
 })
 .catch(error => {
     console.error('Erro:', error);
