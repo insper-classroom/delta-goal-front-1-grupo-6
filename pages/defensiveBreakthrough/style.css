@@ -160,6 +160,7 @@ aside:last-child {
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 12px;
+    text-align: center;
 }
 
 .soccer-field-container .right-marks-container {
@@ -170,6 +171,7 @@ aside:last-child {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 22px;
+    position: relative;
 }
 
 .right-marks-container div {
@@ -283,5 +285,3 @@ aside:last-child {
     border-radius: 100px;
     background-color: rgba(158, 207, 218, 1);
 }
-
-
