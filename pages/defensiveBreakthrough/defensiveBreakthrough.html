@@ -52,31 +52,11 @@
             </div>
 
             <div class="players-emphasis-container">
-                <div class="team" style="padding-right: 10px;">
+                <div id="rupturas" class="team" style="padding-right: 10px;">
                     <p class="subtitle" style="margin-bottom: 5px !important;">Maior nº de rupturas</p>
-
-                    <div class="player">
-                        <i class="bi bi-person-fill player-icon"></i>
-                        <p>Gabriel Menino</p>
-
-                        <span>12 <i class="bi bi-caret-up-fill"></i></span>
-                    </div>
-                    <div class="player">
-                        <i class="bi bi-person-fill player-icon"></i>
-                        <p>Gabriel Menino</p>
-
-                        <span>12 <i class="bi bi-caret-up-fill"></i></span>
-                    </div>
-                    <div class="player">
-                        <i class="bi bi-person-fill player-icon"></i>
-                        <p>Gabriel Menino</p>
-
-                        <span>12 <i class="bi bi-caret-up-fill"></i></span>
-                    </div>
                 </div>
                 <div class="team" style="padding-left: 10px;">
-                    <p  class="subtitle" style="margin-bottom: 5px !important;">Desfechos</p>
-                    <p>Gráfico</p>
+                    <div id="chart_div" style="width: 100%; "></div>
                 </div>
             </div>
         </aside>
@@ -85,7 +65,7 @@
             <h1 class="title">Lances</h1>
             <p class="subtitle" style="margin-bottom: 5px !important;">Lista de rupturas</p>
 
-            <div class="crossing-list-container">
+            <div id="lista-rupturas" class="crossing-list-container">
                 <div class="item">
                     <p class="name">PAL</p>
                     <p class="crossing-index">Ruptura #0001</p>
@@ -123,6 +103,7 @@
 
 
     <script src="../../common/toast.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
