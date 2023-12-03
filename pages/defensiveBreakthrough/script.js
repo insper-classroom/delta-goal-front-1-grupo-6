@@ -13,11 +13,11 @@ function goToCrossingDashboard() {
 }
 
 function add10Seconds(originalTime) {
-    var parts = originalTime.split(":");
+    let parts = originalTime.split(":");
     
-    var hours = parseInt(parts[0], 10);
-    var minutes = parseInt(parts[1], 10);
-    var seconds = parseInt(parts[2], 10);
+    let hours = parseInt(parts[0], 10);
+    let minutes = parseInt(parts[1], 10);
+    let seconds = parseInt(parts[2], 10);
 
     seconds += 10;
 
@@ -27,12 +27,30 @@ function add10Seconds(originalTime) {
     hours += Math.floor(minutes / 60);
     minutes = minutes % 60;
 
-    var formattedHours = hours.toString().padStart(2, "0");
-    var formattedMinutes = minutes.toString().padStart(2, "0");
-    var formattedSeconds = seconds.toString().padStart(2, "0");
+    let formattedHours = hours.toString().padStart(2, "0");
+    let formattedMinutes = minutes.toString().padStart(2, "0");
+    let formattedSeconds = seconds.toString().padStart(2, "0");
 
     return formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
 }
+
+google.charts.load('current', {'packages':['corechart']});
+
+function drawChart(listaDesfechos) {
+
+    let data = google.visualization.arrayToDataTable(listaDesfechos);
+  
+    let options = {
+    title: 'Desfechos',
+    titleTextStyle: {
+        fontSize: 16,
+        fontWeight: 600
+    }
+    };
+  
+    let chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
 
 const backendURL = 'http://127.0.0.1:5501/match/6564f369f82e76ba950789ab';
 
@@ -100,6 +118,15 @@ for (let i = 0; i < json_quebra["rupturas"].length; i++) {
 }
 
 listaRupturas.innerHTML = htmlConteudo2
+
+let listaDesfechos = []
+listaDesfechos.push(['tipo', 'quantidade'])
+
+for(let key in json_quebra["desfechos"]){
+    listaDesfechos.push([key,json_quebra["desfechos"][key]])
+}
+
+drawChart(listaDesfechos)
 
 })
 .catch(error => {
