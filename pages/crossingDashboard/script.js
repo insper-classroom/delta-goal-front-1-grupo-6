@@ -59,7 +59,7 @@ function renderSelectZoneFilter() {
     `
 
     container.innerHTML = `
-    <select id="player-filter" onchange="applyTeamFilter(event.currentTarget.value)">
+    <select id="zone-filter" onchange="applyTeamFilter(event.currentTarget.value)">
         ${selectOptions}
     </select>
     `
@@ -77,7 +77,7 @@ function renderSelectTeamFilter() {
     `
 
     container.innerHTML = `
-    <select id="player-filter" onchange="applyTeamFilter(event.currentTarget.value)">
+    <select id="team-filter" onchange="applyTeamFilter(event.currentTarget.value)">
         ${selectOptions}
     </select>
     `
