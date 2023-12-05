@@ -40,6 +40,19 @@ function applyTeamFilter(teamName) {
     renderCrossingList(filteredCrossings)
 }
 
+function applyZoneFilter(zone) {
+    let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
+    let filteredCrossings = []
+
+    for (let crossing of allCrossings) {
+        if (crossing.zona == zone) {
+            filteredCrossings.push(crossing)
+        }
+    }
+
+    renderCrossingList(filteredCrossings)
+}
+
 function renderSelectZoneFilter() {
     let container = document.querySelector(".filter-container")
     container.innerHTML = ``
@@ -59,7 +72,7 @@ function renderSelectZoneFilter() {
     `
 
     container.innerHTML = `
-    <select id="zone-filter" onchange="applyTeamFilter(event.currentTarget.value)">
+    <select id="zone-filter" onchange="applyZoneFilter(event.currentTarget.value)">
         ${selectOptions}
     </select>
     `
