@@ -31,6 +31,11 @@ function applyPlayerFilter(playerName) {
     console.log(playerName)
 }
 
+function renderAllFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+}
+
 function renderSelectPlayerFilter() {
     let container = document.querySelector(".filter-container")
     container.innerHTML = ``

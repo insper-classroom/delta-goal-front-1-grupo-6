@@ -114,10 +114,10 @@
             <h1 class="title">Lances</h1>
             <p class="subtitle" style="margin-bottom: 5px !important;">Filtrar por: </p>
             <div class="select-filter-type-container">
-                <input type="radio" name="filter_type" id="choose-all-filter" checked>
-                <label for="choose-all-filter">Todos</label>
+                <input type="radio" name="filter_type" id="choose-all-filter" checked onclick="renderAllFilter()">
+                <label for="choose-all-filter" >Todos</label>
 
-                <input type="radio" name="filter_type" id="choose-player-filter" checked>
+                <input type="radio" name="filter_type" id="choose-player-filter" onclick="renderSelectPlayerFilter()">
                 <label for="choose-player-filter">Jogador</label>
                 
                 <input type="radio" name="filter_type" id="choose-team-filter">
