@@ -7,7 +7,7 @@ let gameVideoUrl;
 function selectRuptura(index) {
     let ruptura = json_quebra.rupturas[index]
 
-    document.querySelector(".selected-ruptura-title").textContent = `Ruptura de ${ruptura.nome_jogador_ruptura} (${ruptura.inicio_ruptura})`
+    document.querySelector(".selected-ruptura-title").innerHTML = `Ruptura #${index + 1} (${ruptura.inicio_ruptura}) <span class="selected-zone">${ruptura.zona_defesa}</span>`
 
     let seconds = Number(ruptura.inicio_ruptura.split(":")[0]) * 60 * 60 +  Number(ruptura.inicio_ruptura.split(":")[1]) * 60 + Number(ruptura.inicio_ruptura.split(":")[2]) 
 
@@ -137,9 +137,8 @@ fetch(backendURL, {
             outcomeColor = "254, 148, 181"
         }
 
-        htmlConteudo2 += `<div class="item">
-            <p class="name">${localStorage.getItem("club_name")}</p>
-            <p class="crossing-index">${json_quebra["rupturas"][i]["nome_jogador_ruptura"]}</p>
+        htmlConteudo2 += `<div class="item" onclick="selectRuptura(${i})">
+            <p class="crossing-index">Ruptura #${i + 1}</p>
             <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
             <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
             <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
