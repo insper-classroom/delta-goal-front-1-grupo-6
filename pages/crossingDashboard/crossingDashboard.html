@@ -112,8 +112,23 @@
 
         <aside>
             <h1 class="title">Lances</h1>
-            <p class="subtitle" style="margin-bottom: 5px !important;">Lista de cruzamentos</p>
+            <p class="subtitle" style="margin-bottom: 5px !important;">Filtrar por: </p>
+            <div class="select-filter-type-container">
+                <input type="radio" name="filter_type" id="player-filter">
+                <label for="player-filter">Jogador</label>
+                
+                <input type="radio" name="filter_type" id="team-filter">
+                <label for="team-filter">Time</label>
+                
+                <input type="radio" name="filter_type" id="zone-filter">
+                <label for="zone-filter">Zona</label>
 
+                <input type="radio" name="filter_type" id="outcome-filter">
+                <label for="outcome-filter">Desfecho</label>
+            </div>
+
+            <p class="subtitle" style="margin-bottom: 5px !important;">Lista de cruzamentos</p>
+            
             <div class="crossing-list-container"></div>
             <div class="selected-crossing-infos"></div>
             <iframe src="" width="100%" height="300" allow="autoplay" class="game-video" style="margin-top: 10px !important;"></iframe>
@@ -123,19 +138,14 @@
                     <p class="subtitle" style="margin-bottom: 5px !important;"><i class="bi bi-arrows-move"></i> Atacando </p>
 
                     <div class="attacking-players">
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
+                        
                     </div>
                 </aside>
                 <aside>
                     <p class="subtitle" style="margin-bottom: 5px !important;"><i class="bi bi-shield"></i> Defendendo </p>
                     
                     <div class="defending-players">
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
-                        <p><i class="bi bi-person-fill"></i> Xaulin </p>
+                        
                     </div>
                 </aside>
             </div>

@@ -9,3 +9,4 @@
 - https://www.sitepoint.com/get-url-parameters-with-javascript/
 - https://pt.stackoverflow.com/questions/9900/como-ordenar-um-array-por-valores
 - https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio

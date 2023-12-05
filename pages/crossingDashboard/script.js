@@ -6,6 +6,33 @@ let gameVideoUrl = ""
 
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
+function getAllPlayers() {
+    let players = [];
+
+    console.log(team1Data)
+
+    for (let i in team1Data.rupturas) {
+        for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
+            if (!players.includes(name)) {
+                players.push(name)
+            }
+        }
+    }
+    for (let i in team2Data.rupturas) {
+        for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
+            if (!players.includes(name)) {
+                players.push(name)
+            }
+        }
+    }
+
+    console.log(players)
+}
+
+function renderPlayerSelectFilter() {
+    let players = getAllPlayers()
+}
+
 function logout() {
     localStorage.removeItem("token")
     window.location.href = "/pages/login/login.html"
@@ -260,6 +287,8 @@ async function getMatchDetails() {
 
     renderEmphasisPlayers("team1")
     renderEmphasisPlayers("team2")
+
+    renderPlayerSelectFilter()
 }
 
 
