@@ -40,6 +40,31 @@ function applyTeamFilter(teamName) {
     renderCrossingList(filteredCrossings)
 }
 
+function renderSelectZoneFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione a zona</option>
+        <option value="D2.2">Zona: D2.2</option>
+        <option value="D2.1">Zona: D2.1</option>
+        <option value="D1.2">Zona: D1.2</option>
+        <option value="D3">Zona: D3</option>
+        <option value="D1.1">Zona: D1.1</option>
+        <option value="E1.1">Zona: E1.1</option>
+        <option value="E3">Zona: E3</option>
+        <option value="E2.2">Zona: E2.2</option>
+        <option value="E2.1">Zona: E2.1</option>
+        <option value="E1.2">Zona: E1.2</option>
+    `
+
+    container.innerHTML = `
+    <select id="player-filter" onchange="applyTeamFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+}
+
 function renderSelectTeamFilter() {
     let container = document.querySelector(".filter-container")
     container.innerHTML = ``
