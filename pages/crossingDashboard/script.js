@@ -6,20 +6,20 @@ let gameVideoUrl = ""
 
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
-function getAllPlayers() {
+function getAllCrossingPlayers() {
     let players = [];
 
     for (let i in team1Data.rupturas) {
         for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
-            if (!players.includes(name)) {
-                players.push(name)
+            if (!players.includes(name.trim())) {
+                players.push(name.trim())
             }
         }
     }
     for (let i in team2Data.rupturas) {
-        for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
-            if (!players.includes(name)) {
-                players.push(name)
+        for (let name of team2Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
+            if (!players.includes(name.trim())) {
+                players.push(name.trim())
             }
         }
     }
@@ -28,12 +28,25 @@ function getAllPlayers() {
 }
 
 function applyPlayerFilter(playerName) {
-    console.log(playerName)
+    let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
+    let filteredCrossings = []
+
+    for (let crossing of allCrossings) {
+        if (crossing.nome_jogadores_time_cruzando.includes(playerName.trim())) {
+            filteredCrossings.push(crossing)
+        }
+    }
+
+    renderCrossingList(filteredCrossings)
 }
 
 function renderAllFilter() {
     let container = document.querySelector(".filter-container")
     container.innerHTML = ``
+
+    let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
+
+    renderCrossingList(allCrossings)
 }
 
 function renderSelectPlayerFilter() {
@@ -44,7 +57,7 @@ function renderSelectPlayerFilter() {
         <option disabled selected>Selecione o jogador</option>
     `
 
-    let players = getAllPlayers()
+    let players = getAllCrossingPlayers()
     
     for (let name of players) {
         selectOptions += `
@@ -292,7 +305,7 @@ async function getMatchDetails() {
         team1Data.rupturas[i].teamName = team1Data.nome
     }
     for (let i in team2Data.rupturas) {
-        team2Data.rupturas[i].teamName = team1Data.nome
+        team2Data.rupturas[i].teamName = team2Data.nome
     }
 
     let gameVideo = document.querySelector(".game-video")
