@@ -1,6 +1,20 @@
 localStorage.setItem('club_name','PAL')
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
+var json_quebra;
+let gameVideoUrl;
+
+function selectRuptura(index) {
+    let ruptura = json_quebra.rupturas[index]
+
+    document.querySelector(".selected-ruptura-title").textContent = `Ruptura de ${ruptura.nome_jogador_ruptura} (${ruptura.inicio_ruptura})`
+
+    let seconds = Number(ruptura.inicio_ruptura.split(":")[0]) * 60 * 60 +  Number(ruptura.inicio_ruptura.split(":")[1]) * 60 + Number(ruptura.inicio_ruptura.split(":")[2]) 
+
+    let gameVideo = document.querySelector(".game-video")
+    gameVideo.src = gameVideoUrl + "?t=" + seconds
+}
+
 function logout() {
     localStorage.removeItem("token")
     window.location.href = "/pages/login/login.html"
@@ -60,7 +74,6 @@ if (!id) {
 }
 const backendURL = 'http://127.0.0.1:5500/match/' + id;
 
-var json_quebra;
 fetch(backendURL, {
     method: 'GET',
     headers: {
@@ -144,7 +157,13 @@ fetch(backendURL, {
 
     drawChart(listaDesfechos)
 
+    let gameVideo = document.querySelector(".game-video")
+    gameVideoUrl = data.match.video_url
+    gameVideo.src = gameVideoUrl
+
     console.log(json_quebra)
+
+    selectRuptura(0)
 })
 .catch(error => {
     console.error('Erro:', error);
