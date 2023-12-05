@@ -27,6 +27,26 @@ function getAllCrossingPlayers() {
     return players
 }
 
+
+
+function renderSelectTeamFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione o time</option>
+        <option value="${team1Data.nome}">${team1Data.nome}</option>
+        <option value="${team2Data.nome}">${team2Data.nome}</option>
+
+    `
+
+    container.innerHTML = `
+    <select id="player-filter" onchange="applyTeamFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+}
+
 function applyPlayerFilter(playerName) {
     let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
     let filteredCrossings = []
