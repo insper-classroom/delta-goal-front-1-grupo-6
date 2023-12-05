@@ -8,3 +8,4 @@
 - https://olhardigital.com.br/2023/06/09/internet-e-redes-sociais/selecoes-de-futebol-mais-populares-nas-redes-sociais/ - referencia foto campo de futebol com a bola
 - https://www.sitepoint.com/get-url-parameters-with-javascript/
 - https://pt.stackoverflow.com/questions/9900/como-ordenar-um-array-por-valores
+- https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
