@@ -27,7 +27,18 @@ function getAllCrossingPlayers() {
     return players
 }
 
+function applyTeamFilter(teamName) {
+    let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
+    let filteredCrossings = []
 
+    for (let crossing of allCrossings) {
+        if (crossing.teamName == teamName) {
+            filteredCrossings.push(crossing)
+        }
+    }
+
+    renderCrossingList(filteredCrossings)
+}
 
 function renderSelectTeamFilter() {
     let container = document.querySelector(".filter-container")
