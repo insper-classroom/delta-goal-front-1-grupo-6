@@ -53,6 +53,39 @@ function applyZoneFilter(zone) {
     renderCrossingList(filteredCrossings)
 }
 
+function applyOutcomeFilter(outcome) {
+    let allCrossings = [...team1Data.rupturas, ...team2Data.rupturas]
+    let filteredCrossings = []
+
+    for (let crossing of allCrossings) {
+        if (crossing.desfecho == outcome) {
+            filteredCrossings.push(crossing)
+        }
+    }
+
+    renderCrossingList(filteredCrossings)
+}
+
+
+function renderSelectOutcomeFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione o desfecho</option>
+        <option value="Bem-Sucedido">Bem-Sucedido</option>
+        <option value="Perdido">Perdido</option>
+        <option value="Bloqueado">Bloqueado</option>
+    `
+
+    container.innerHTML = `
+    <select id="outcome-filter" onchange="applyOutcomeFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+
+}
+
 function renderSelectZoneFilter() {
     let container = document.querySelector(".filter-container")
     container.innerHTML = ``
@@ -389,6 +422,8 @@ async function getMatchDetails() {
     renderEmphasisPlayers("team2")
 
     applyAllFilter()
+
+    console.log(team1Data.rupturas)
 }
 
 
