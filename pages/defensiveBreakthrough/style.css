@@ -143,7 +143,7 @@ aside:last-child {
     height: 100%;
     width: 26%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 60px 60px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 22px;
@@ -166,9 +166,8 @@ aside:last-child {
 
 .soccer-field-container .right-marks-container {
     height: 100%;
-    width: 26%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 60px 60px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 22px;
