@@ -114,17 +114,24 @@
             <h1 class="title">Lances</h1>
             <p class="subtitle" style="margin-bottom: 5px !important;">Filtrar por: </p>
             <div class="select-filter-type-container">
-                <input type="radio" name="filter_type" id="player-filter">
-                <label for="player-filter">Jogador</label>
-                
-                <input type="radio" name="filter_type" id="team-filter">
-                <label for="team-filter">Time</label>
-                
-                <input type="radio" name="filter_type" id="zone-filter">
-                <label for="zone-filter">Zona</label>
+                <input type="radio" name="filter_type" id="choose-all-filter" checked>
+                <label for="choose-all-filter">Todos</label>
 
-                <input type="radio" name="filter_type" id="outcome-filter">
-                <label for="outcome-filter">Desfecho</label>
+                <input type="radio" name="filter_type" id="choose-player-filter" checked>
+                <label for="choose-player-filter">Jogador</label>
+                
+                <input type="radio" name="filter_type" id="choose-team-filter">
+                <label for="choose-team-filter">Time</label>
+                
+                <input type="radio" name="filter_type" id="choose-zone-filter">
+                <label for="choose-zone-filter">Zona</label>
+
+                <input type="radio" name="filter_type" id="choose-outcome-filter">
+                <label for="choose-outcome-filter">Desfecho</label>
+            </div>
+
+            <div class="filter-container">
+                
             </div>
 
             <p class="subtitle" style="margin-bottom: 5px !important;">Lista de cruzamentos</p>

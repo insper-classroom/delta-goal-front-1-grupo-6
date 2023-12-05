@@ -261,16 +261,31 @@ aside:last-child {
 
 .select-filter-type-container input {
     margin-right: 5px !important;
+    cursor: pointer;
 }
 
 .select-filter-type-container label {
     margin-right: 10px !important;
     border-right: solid 1px rgba(0, 0, 0, 0.5);
     padding-right: 10px;
+    cursor: pointer;
 }
 
 .select-filter-type-container label:last-child {
     border: none;
+}
+
+/* ------------------------------------------- */
+
+.filter-container {
+    width: 100%;
+    margin-bottom: 20px !important;
+}
+
+.filter-container select {
+    width: 100%;
+    height: 40px;
+    padding: 0px 10px;
 }
 
 /* ------------------------------------------- */

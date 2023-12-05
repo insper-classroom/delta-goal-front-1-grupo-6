@@ -9,8 +9,6 @@ document.querySelector(".username").textContent = `Olá, ${localStorage.getItem(
 function getAllPlayers() {
     let players = [];
 
-    console.log(team1Data)
-
     for (let i in team1Data.rupturas) {
         for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
             if (!players.includes(name)) {
@@ -26,12 +24,36 @@ function getAllPlayers() {
         }
     }
 
-    console.log(players)
+    return players
 }
 
-function renderPlayerSelectFilter() {
-    let players = getAllPlayers()
+function applyPlayerFilter(playerName) {
+    console.log(playerName)
 }
+
+function renderSelectPlayerFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione o jogador</option>
+    `
+
+    let players = getAllPlayers()
+    
+    for (let name of players) {
+        selectOptions += `
+            <option value="${name}">${name}</option>
+        `
+    }
+
+    container.innerHTML = `
+    <select id="player-filter" onchange="applyPlayerFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+}
+
 
 function logout() {
     localStorage.removeItem("token")
@@ -145,48 +167,28 @@ function selectCrossing(whichTeam, cIndex) {
 }
 
 
-function renderCrossingList() {
+function renderCrossingList(crossings) {
     let container = document.querySelector(".crossing-list-container")
 
-    for (let i in team1Data.rupturas) {
+    for (let i in crossings) {
         let outcomeColor = "182, 253, 157"
 
-        if (team1Data.rupturas[i].desfecho == "Perdido") {
+        if (crossings[i].desfecho == "Perdido") {
             outcomeColor = "248, 147, 97"
-        } else if (team1Data.rupturas[i].desfecho == "Bloqueado") {
+        } else if (crossings[i].desfecho == "Bloqueado") {
             outcomeColor = "254, 148, 181"
         }
 
         container.innerHTML += `
         <div class="item" onclick="selectCrossing('team1', '${i}')">
-            <p class="name">${team1Data.nome.slice(0, 3).toUpperCase()}</p>
+            <p class="name">${crossings.nome.slice(0, 3).toUpperCase()}</p>
             <p class="crossing-index"> #${Number(i) + 1}</p>
-            <p class="time">${team1Data.rupturas[i].instante_cruzamento}</p>
-            <div class="zone">ZONA ${team1Data.rupturas[i].zona}</div>
+            <p class="time">${crossings.rupturas[i].instante_cruzamento}</p>
+            <div class="zone">ZONA ${crossings.rupturas[i].zona}</div>
             <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${team1Data.rupturas[i].desfecho}</div>
         </div>
         `
         }
-        
-        for (let i in team2Data.rupturas) {
-            let outcomeColor = "182, 253, 157"
-            
-            if (team2Data.rupturas[i].desfecho == "Perdido") {
-                outcomeColor = "248, 147, 97"
-            } else if (team2Data.rupturas[i].desfecho == "Bloqueado") {
-                outcomeColor = "254, 148, 181"
-            }
-            
-            container.innerHTML += `
-            <div class="item" onclick="selectCrossing('team2', '${i}')">
-                <p class="name">${team2Data.nome.slice(0, 3).toUpperCase()}</p>
-                <p class="crossing-index">#${Number(i) + 1}</p>
-                <p class="time">${team2Data.rupturas[i].instante_cruzamento}</p>
-                <div class="zone">ZONA ${team2Data.rupturas[i].zona}</div>
-                <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${team2Data.rupturas[i].desfecho}</div>
-            </div>
-        `
-    }
 }
 
 async function renderEmphasisPlayers(team) {
@@ -288,7 +290,7 @@ async function getMatchDetails() {
     renderEmphasisPlayers("team1")
     renderEmphasisPlayers("team2")
 
-    renderPlayerSelectFilter()
+    renderSelectPlayerFilter()
 }
 
 
