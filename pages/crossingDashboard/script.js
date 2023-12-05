@@ -112,16 +112,7 @@ function renderOutcomeCharts(data) {
 
 }
 
-function selectCrossing(whichTeam, cIndex) {
-    let teamData;
-    if (whichTeam == "team1") {
-        teamData = team1Data
-    } else {
-        teamData = team2Data
-    }
-
-    let crossing = teamData.rupturas[cIndex]
-
+function selectCrossing(crossing, cIndex) {
     let infosContainer = document.querySelector(".selected-crossing-infos")
 
     let outcomeColor = "182, 253, 157"
@@ -133,7 +124,7 @@ function selectCrossing(whichTeam, cIndex) {
     }
 
     infosContainer.innerHTML = `
-        <p class="team-name">${teamData.nome.slice(0, 3).toUpperCase()}</p>
+        <p class="team-name">${crossing.teamName.slice(0, 3).toUpperCase()}</p>
         <p class="index">Cruzamento #${Number(cIndex) + 1}</p>
         <p class="outcome" style="background-color: rgba(${outcomeColor})">Perdido</p>
     `
@@ -166,9 +157,13 @@ function selectCrossing(whichTeam, cIndex) {
     $("." +  zone).addClass("active-zone")
 }
 
+function applyAllFilter() {
+    renderCrossingList([...team1Data.rupturas, ...team2Data.rupturas])
+}
 
 function renderCrossingList(crossings) {
     let container = document.querySelector(".crossing-list-container")
+    container.innerHTML = ""
 
     for (let i in crossings) {
         let outcomeColor = "182, 253, 157"
@@ -179,16 +174,25 @@ function renderCrossingList(crossings) {
             outcomeColor = "254, 148, 181"
         }
 
-        container.innerHTML += `
-        <div class="item" onclick="selectCrossing('team1', '${i}')">
-            <p class="name">${crossings.nome.slice(0, 3).toUpperCase()}</p>
-            <p class="crossing-index"> #${Number(i) + 1}</p>
-            <p class="time">${crossings.rupturas[i].instante_cruzamento}</p>
-            <div class="zone">ZONA ${crossings.rupturas[i].zona}</div>
-            <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${team1Data.rupturas[i].desfecho}</div>
-        </div>
-        `
+        let element = document.createElement("div")
+        element.classList.add("item")
+
+        element.onclick = () => {
+            selectCrossing(crossings[i], i)
         }
+
+        element.innerHTML += `
+            <p class="name">${crossings[i].teamName.slice(0, 3).toUpperCase()}</p>
+            <p class="crossing-index"> #${Number(i) + 1}</p>
+            <p class="time">${crossings[i].instante_cruzamento}</p>
+            <div class="zone">ZONA ${crossings[i].zona}</div>
+            <div class="outcome" style="background-color: rgba(${outcomeColor}, 1)">${crossings[i].desfecho}</div>
+        `
+        container.appendChild(element)
+    }
+
+
+        
 }
 
 async function renderEmphasisPlayers(team) {
@@ -279,18 +283,25 @@ async function getMatchDetails() {
 
     team1Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]] 
     team2Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[1]]
-    
+    for (let i in team1Data.rupturas) {
+        team1Data.rupturas[i].teamName = team1Data.nome
+    }
+    for (let i in team2Data.rupturas) {
+        team2Data.rupturas[i].teamName = team1Data.nome
+    }
+
     let gameVideo = document.querySelector(".game-video")
     gameVideoUrl = responseData.match.video_url
     gameVideo.src = responseData.match.video_url
 
     renderCrossingList()
-    selectCrossing("team1", 0)
+    selectCrossing(team1Data.rupturas[0], 0)
+
 
     renderEmphasisPlayers("team1")
     renderEmphasisPlayers("team2")
 
-    renderSelectPlayerFilter()
+    applyAllFilter()
 }
 
 
