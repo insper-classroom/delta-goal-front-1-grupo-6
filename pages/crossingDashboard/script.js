@@ -200,7 +200,7 @@ function selectCrossing(crossing, cIndex) {
     infosContainer.innerHTML = `
         <p class="team-name">${crossing.teamName.slice(0, 3).toUpperCase()}</p>
         <p class="index">Cruzamento #${Number(cIndex) + 1}</p>
-        <p class="outcome" style="background-color: rgba(${outcomeColor})">Perdido</p>
+        <p class="outcome" style="background-color: rgba(${outcomeColor})">${crossing.desfecho}</p>
     `
 
     let gameVideo = document.querySelector(".game-video")
@@ -211,7 +211,7 @@ function selectCrossing(crossing, cIndex) {
 
     let defendingContainer = document.querySelector(".defending-players")
     defendingContainer.innerHTML = ""
-    for (name of crossing.nome_jogadores_time_defendendo.split(",")) {
+    for (let name of crossing.nome_jogadores_time_defendendo.split(",")) {
         defendingContainer.innerHTML += `
             <p><i class="bi bi-person-fill"></i> ${name} </p>
         `
@@ -219,7 +219,7 @@ function selectCrossing(crossing, cIndex) {
 
     let attackingContainer = document.querySelector(".attacking-players")
     attackingContainer.innerHTML = ""
-    for (name of crossing.nome_jogadores_time_cruzando.split(",")) {
+    for (let name of crossing.nome_jogadores_time_cruzando.split(",")) {
         attackingContainer.innerHTML += `
         <p><i class="bi bi-person-fill"></i> ${name} </p>
         `
