@@ -60,6 +60,7 @@ if (!id) {
 }
 const backendURL = 'http://127.0.0.1:5500/match/' + id;
 
+var json_quebra;
 fetch(backendURL, {
     method: 'GET',
     headers: {
@@ -79,9 +80,9 @@ fetch(backendURL, {
       });
 
     if (data["match"]["club_1_name"].toUpperCase() == localStorage.getItem('club_name').toUpperCase())
-        var json_quebra = listaDeObjetos["0"]
+        json_quebra = listaDeObjetos["0"]
     else
-        var json_quebra = listaDeObjetos["1"]
+        json_quebra = listaDeObjetos["1"]
 
     /////////////
     
@@ -115,11 +116,20 @@ fetch(backendURL, {
     let listaRupturas = document.getElementById('lista-rupturas');
 
     for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        let outcomeColor = "182, 253, 157"
+
+        if (json_quebra["rupturas"][i]["desfecho"] == "Foi desarmado" || json_quebra["rupturas"][i]["desfecho"] == "Forçou a saída de bola adversária") {
+            outcomeColor = "248, 147, 97"
+        } else if (json_quebra["rupturas"][i]["desfecho"] == "Não recebeu a bola" || json_quebra["rupturas"][i]["desfecho"] == "Passe não concluído") {
+            outcomeColor = "254, 148, 181"
+        }
+
         htmlConteudo2 += `<div class="item">
             <p class="name">${localStorage.getItem("club_name")}</p>
             <p class="crossing-index">${json_quebra["rupturas"][i]["nome_jogador_ruptura"]}</p>
-            <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]} - ${add10Seconds(json_quebra["rupturas"][i]["inicio_ruptura"])}</p>
+            <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
             <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+            <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
         </div>`;
     }
 
@@ -133,6 +143,8 @@ fetch(backendURL, {
     }
 
     drawChart(listaDesfechos)
+
+    console.log(json_quebra)
 })
 .catch(error => {
     console.error('Erro:', error);

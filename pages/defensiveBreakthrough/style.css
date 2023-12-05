@@ -250,6 +250,8 @@ aside:last-child {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 20px;
+    border: solid 1px black;
 }
 
 .crossing-list-container .item {
@@ -285,4 +287,18 @@ aside:last-child {
     padding: 5px 10px;
     border-radius: 100px;
     background-color: rgba(158, 207, 218, 1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.crossing-list-container .outcome {
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background-color: rgba(158, 207, 218, 1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80px;
 }
