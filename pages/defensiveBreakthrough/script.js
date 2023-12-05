@@ -144,10 +144,11 @@ fetch(backendURL, {
     let zona3a = document.getElementById('3.A');
     let zona3b = document.getElementById('3.B');
 
-    zona1b.innerText = "1.B"+"\n"+~~(json_quebra["zonas"]["Zona 1 - B"]/json_quebra["rupturas"].length*100)+"%";
-    zona1a.innerText = "1.A"+"\n"+~~(json_quebra["zonas"]["Zona 1 - A"]/json_quebra["rupturas"].length*100)+"%";
-    zona3a.innerText = "3.A"+"\n"+~~(json_quebra["zonas"]["Zona 3 - A"]/json_quebra["rupturas"].length*100)+"%";
-    zona3b.innerText = "3.B"+"\n"+~~(json_quebra["zonas"]["Zona 3 - B"]/json_quebra["rupturas"].length*100)+"%";
+    zona1b.innerText = "1.B"+"\n"+~~(((json_quebra["zonas"]["Zona 1 - B"] ?? 0 )/json_quebra["rupturas"].length)*100)+"%";
+    zona1a.innerText = "1.A"+"\n"+~~(((json_quebra["zonas"]["Zona 1 - A"] ?? 0) /json_quebra["rupturas"].length)*100)+"%";
+    zona3a.innerText = "3.A"+"\n"+~~(((json_quebra["zonas"]["Zona 3 - A"] ?? 0 )/json_quebra["rupturas"].length)*100)+"%";
+    zona3b.innerText = "3.B"+"\n"+~~(((json_quebra["zonas"]["Zona 3 - B"] ?? 0) /json_quebra["rupturas"].length)*100)+"%";
+    document.querySelector(".zone-2-porcentagem").innerHTML = String(Math.ceil(((json_quebra["zonas"]["Zona 2"]??0)/json_quebra["rupturas"].length)*100))  + "%"
 
     let divRupturas = document.getElementById('rupturas');
 
