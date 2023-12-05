@@ -56,14 +56,14 @@ let params = new URLSearchParams(window.location.search)
 let id = params.get("id")
 
 if (!id) {
-    return toast("Id inválido", "error")
+    toast("Id inválido", "error")
 }
 const backendURL = 'http://127.0.0.1:5500/match/' + id;
 
 fetch(backendURL, {
     method: 'GET',
     headers: {
-        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHViX25hbWUiOiJQQUwifQ._ehML_PlPQmypG9fe0YV7V7AIdtzbwDO9eP2HY-HW2Q"
+        "Authorization":"Bearer " + localStorage.getItem("token")
     }
 })
 .then(response => {
@@ -90,50 +90,49 @@ fetch(backendURL, {
     let zona3a = document.getElementById('3.A');
     let zona3b = document.getElementById('3.B');
 
-zona1b.innerText = "1.B"+"\n"+~~(json_quebra["zonas"]["Zona 1 - B"]/json_quebra["rupturas"].length*100)+"%";
-zona1a.innerText = "1.A"+"\n"+~~(json_quebra["zonas"]["Zona 1 - A"]/json_quebra["rupturas"].length*100)+"%";
-zona3a.innerText = "3.A"+"\n"+~~(json_quebra["zonas"]["Zona 3 - A"]/json_quebra["rupturas"].length*100)+"%";
-zona3b.innerText = "3.B"+"\n"+~~(json_quebra["zonas"]["Zona 3 - B"]/json_quebra["rupturas"].length*100)+"%";
+    zona1b.innerText = "1.B"+"\n"+~~(json_quebra["zonas"]["Zona 1 - B"]/json_quebra["rupturas"].length*100)+"%";
+    zona1a.innerText = "1.A"+"\n"+~~(json_quebra["zonas"]["Zona 1 - A"]/json_quebra["rupturas"].length*100)+"%";
+    zona3a.innerText = "3.A"+"\n"+~~(json_quebra["zonas"]["Zona 3 - A"]/json_quebra["rupturas"].length*100)+"%";
+    zona3b.innerText = "3.B"+"\n"+~~(json_quebra["zonas"]["Zona 3 - B"]/json_quebra["rupturas"].length*100)+"%";
 
-let divRupturas = document.getElementById('rupturas');
+    let divRupturas = document.getElementById('rupturas');
 
-let htmlConteudo = '<p class="subtitle" style="margin-bottom: 5px !important;">Maior nº de rupturas</p>';
+    let htmlConteudo = '<p class="subtitle" style="margin-bottom: 5px !important;">Maior nº de rupturas</p>';
 
-for (let i = 0; i < json_quebra["top_5"].length; i++) {
-    htmlConteudo += `
+    for (let i = 0; i < json_quebra["top_5"].length; i++) {
+        htmlConteudo += `
         <div class="player">
             <i class="bi bi-person-fill player-icon"></i>
             <p>${json_quebra["top_5"][i]["nome"]}</p>
             <span>${json_quebra["top_5"][i]["rupturas"]} <i class="bi bi-caret-up-fill"></i></span>
         </div>`;
-}
+    }
 
-divRupturas.innerHTML = htmlConteudo;
+    divRupturas.innerHTML = htmlConteudo;
 
-let htmlConteudo2 = '';
+    let htmlConteudo2 = '';
 
-let listaRupturas = document.getElementById('lista-rupturas');
+    let listaRupturas = document.getElementById('lista-rupturas');
 
-for (let i = 0; i < json_quebra["rupturas"].length; i++) {
-    htmlConteudo2 += `<div class="item">
-    <p class="name">${localStorage.getItem("club_name")}</p>
-    <p class="crossing-index">${json_quebra["rupturas"][i]["nome_jogador_ruptura"]}</p>
-    <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]} - ${add10Seconds(json_quebra["rupturas"][i]["inicio_ruptura"])}</p>
-    <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
-</div>`;
-}
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        htmlConteudo2 += `<div class="item">
+            <p class="name">${localStorage.getItem("club_name")}</p>
+            <p class="crossing-index">${json_quebra["rupturas"][i]["nome_jogador_ruptura"]}</p>
+            <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]} - ${add10Seconds(json_quebra["rupturas"][i]["inicio_ruptura"])}</p>
+            <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+        </div>`;
+    }
 
-listaRupturas.innerHTML = htmlConteudo2
+    listaRupturas.innerHTML = htmlConteudo2
 
-let listaDesfechos = []
-listaDesfechos.push(['tipo', 'quantidade'])
+    let listaDesfechos = []
+    listaDesfechos.push(['tipo', 'quantidade'])
 
-for(let key in json_quebra["desfechos"]){
-    listaDesfechos.push([key,json_quebra["desfechos"][key]])
-}
+    for(let key in json_quebra["desfechos"]){
+        listaDesfechos.push([key,json_quebra["desfechos"][key]])
+    }
 
-drawChart(listaDesfechos)
-
+    drawChart(listaDesfechos)
 })
 .catch(error => {
     console.error('Erro:', error);
