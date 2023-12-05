@@ -52,7 +52,13 @@ function drawChart(listaDesfechos) {
     chart.draw(data, options);
   }
 
-const backendURL = 'http://127.0.0.1:5501/match/6564f369f82e76ba950789ab';
+let params = new URLSearchParams(window.location.search)
+let id = params.get("id")
+
+if (!id) {
+    return toast("Id inválido", "error")
+}
+const backendURL = 'http://127.0.0.1:5500/match/' + id;
 
 fetch(backendURL, {
     method: 'GET',
@@ -91,7 +97,7 @@ zona3b.innerText = "3.B"+"\n"+~~(json_quebra["zonas"]["Zona 3 - B"]/json_quebra[
 
 let divRupturas = document.getElementById('rupturas');
 
-let htmlConteudo = '';
+let htmlConteudo = '<p class="subtitle" style="margin-bottom: 5px !important;">Maior nº de rupturas</p>';
 
 for (let i = 0; i < json_quebra["top_5"].length; i++) {
     htmlConteudo += `
