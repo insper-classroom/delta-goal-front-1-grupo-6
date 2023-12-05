@@ -13,6 +13,46 @@ function selectRuptura(index) {
 
     let gameVideo = document.querySelector(".game-video")
     gameVideo.src = gameVideoUrl + "?t=" + seconds
+
+    document.querySelector(".jogadores-posse-de-bola").innerHTML = `
+    <div class="player">
+        <i class="bi bi-person-fill player-icon"></i>
+        <p>${ruptura.nome_jogador_posse_bola}</p>
+    </div>
+    `
+
+    document.querySelector(".jogadores-em-ruptura").innerHTML = `
+    <div class="player">
+        <i class="bi bi-person-fill player-icon"></i>
+        <p>${ruptura.nome_jogador_ruptura}</p>
+    </div>
+    `
+
+    let linhaDefensivaContainer = document.querySelector(".jogadores-linha-defensiva")
+    linhaDefensivaContainer.innerHTML = ""
+    
+    for (let name of ruptura.nomes_jogadores_defesa) {
+        linhaDefensivaContainer.innerHTML += `
+        <div class="player">
+            <i class="bi bi-person-fill player-icon"></i>
+            <p>${name}</p>
+        </div>
+        `
+    }
+
+    let outcomeColor = "182, 253, 157"
+
+    if (ruptura.desfecho == "Foi desarmado" || ruptura.desfecho == "Forçou a saída de bola adversária") {
+        outcomeColor = "248, 147, 97"
+    } else if (ruptura.desfecho == "Não recebeu a bola" || ruptura.desfecho == "Passe não concluído") {
+        outcomeColor = "254, 148, 181"
+    }
+
+    let outcomeElement = document.querySelector(".selected-outcome")
+    outcomeElement.textContent = ruptura.desfecho
+    outcomeElement.style.backgroundColor = `rgba(${outcomeColor}, 1)`
+
+
 }
 
 function logout() {
