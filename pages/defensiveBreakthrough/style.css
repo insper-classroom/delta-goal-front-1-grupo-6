@@ -188,6 +188,15 @@ aside:last-child {
     font-size: 12px;
 }
 
+.zone-2 {
+    color: white;
+    font-weight: 600;
+    position: absolute;
+    right: 41%;
+    top: 20px;
+    font-size: 20px;
+}
+
 
 /* -------------------------------------------------- */
 
