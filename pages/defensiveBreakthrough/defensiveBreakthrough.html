@@ -64,6 +64,24 @@
 
         <aside>
             <h1 class="title">Lances</h1>
+            <p class="subtitle" style="margin-bottom: 5px !important;">Filtrar por: </p>
+            <div class="select-filter-type-container">
+                <input type="radio" name="filter_type" id="choose-all-filter" checked onclick="renderAllFilter()">
+                <label for="choose-all-filter" >Todos</label>
+
+                <input type="radio" name="filter_type" id="choose-player-filter" onclick="renderPlayerFilter()">
+                <label for="choose-player-filter">Jogador</label>
+                
+                <input type="radio" name="filter_type" id="choose-zone-filter" onclick="renderSelectZoneFilter()">
+                <label for="choose-zone-filter">Zona</label>
+
+                <input type="radio" name="filter_type" id="choose-outcome-filter" onclick="renderSelectOutcomeFilter()">
+                <label for="choose-outcome-filter">Desfecho</label>
+            </div>
+
+            <div class="filter-container">
+                
+            </div>
             <p class="subtitle" style="margin-bottom: 5px !important;">Lista de rupturas</p>
 
             <div id="lista-rupturas" class="crossing-list-container">

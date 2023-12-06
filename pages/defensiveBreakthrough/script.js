@@ -164,6 +164,7 @@ fetch(backendURL, {
     }
 
     divRupturas.innerHTML = htmlConteudo;
+    ///////////////////////////////////////////
 
     let htmlConteudo2 = '';
 
@@ -208,3 +209,184 @@ fetch(backendURL, {
 .catch(error => {
     console.error('Erro:', error);
 });
+
+function renderAllFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let htmlConteudo2 = '';
+
+    let listaRupturas = document.getElementById('lista-rupturas');
+
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        let outcomeColor = "182, 253, 157"
+
+        if (json_quebra["rupturas"][i]["desfecho"] == "Foi desarmado" || json_quebra["rupturas"][i]["desfecho"] == "Forçou a saída de bola adversária") {
+            outcomeColor = "248, 147, 97"
+        } else if (json_quebra["rupturas"][i]["desfecho"] == "Não recebeu a bola" || json_quebra["rupturas"][i]["desfecho"] == "Passe não concluído") {
+            outcomeColor = "254, 148, 181"
+        }
+
+        htmlConteudo2 += `<div class="item" onclick="selectRuptura(${i})">
+            <p class="crossing-index">Ruptura #${i + 1}</p>
+            <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
+            <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+            <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
+        </div>`;
+    }
+
+    listaRupturas.innerHTML = htmlConteudo2
+}
+
+function applyPlayerFilter(playerName) {
+    let htmlConteudo2 = '';
+
+    let listaRupturas = document.getElementById('lista-rupturas');
+
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        if (json_quebra["rupturas"][i]["nome_jogador_ruptura"] == playerName){
+            let outcomeColor = "182, 253, 157"
+
+            if (json_quebra["rupturas"][i]["desfecho"] == "Foi desarmado" || json_quebra["rupturas"][i]["desfecho"] == "Forçou a saída de bola adversária") {
+                outcomeColor = "248, 147, 97"
+            } else if (json_quebra["rupturas"][i]["desfecho"] == "Não recebeu a bola" || json_quebra["rupturas"][i]["desfecho"] == "Passe não concluído") {
+                outcomeColor = "254, 148, 181"
+            }
+
+            htmlConteudo2 += `<div class="item" onclick="selectRuptura(${i})">
+                <p class="crossing-index">Ruptura #${i + 1}</p>
+                <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
+                <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+                <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
+            </div>`;
+        }
+    }
+    listaRupturas.innerHTML = htmlConteudo2
+}
+
+function getAllPlayers() {
+    let players = [];
+
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        players.push(json_quebra["rupturas"][i]["nome_jogador_ruptura"])
+    }
+
+    return players
+}
+
+
+function renderPlayerFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione o jogador</option>
+    `
+
+    let players = getAllPlayers()
+    
+    for (let name of players) {
+        selectOptions += `
+            <option value="${name}">${name}</option>
+        `
+    }
+
+    container.innerHTML = `
+    <select id="player-filter" onchange="applyPlayerFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+}
+
+function applyZoneFilter(zone) {
+    let htmlConteudo2 = '';
+
+    let listaRupturas = document.getElementById('lista-rupturas');
+
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        if (json_quebra["rupturas"][i]["zona_defesa"] == zone){
+            let outcomeColor = "182, 253, 157"
+
+            if (json_quebra["rupturas"][i]["desfecho"] == "Foi desarmado" || json_quebra["rupturas"][i]["desfecho"] == "Forçou a saída de bola adversária") {
+                outcomeColor = "248, 147, 97"
+            } else if (json_quebra["rupturas"][i]["desfecho"] == "Não recebeu a bola" || json_quebra["rupturas"][i]["desfecho"] == "Passe não concluído") {
+                outcomeColor = "254, 148, 181"
+            }
+
+            htmlConteudo2 += `<div class="item" onclick="selectRuptura(${i})">
+                <p class="crossing-index">Ruptura #${i + 1}</p>
+                <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
+                <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+                <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
+            </div>`;
+        }
+    }
+    listaRupturas.innerHTML = htmlConteudo2
+}
+
+function renderSelectZoneFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione a zona</option>
+        <option value="Zona 1.A">Zona: 1.A</option>
+        <option value="Zona 1.B">Zona: 1.B</option>
+        <option value="Zona 2">Zona: 2</option>
+        <option value="Zona 3.A">Zona: 3.A</option>
+        <option value="Zona 3.B">Zona: 3.B</option>
+    `
+
+    container.innerHTML = `
+    <select id="zone-filter" onchange="applyZoneFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+}
+
+function applyOutcomeFilter(outcome) {
+    let htmlConteudo2 = '';
+
+    let listaRupturas = document.getElementById('lista-rupturas');
+
+    for (let i = 0; i < json_quebra["rupturas"].length; i++) {
+        if (json_quebra["rupturas"][i]["desfecho"] == outcome){
+            let outcomeColor = "182, 253, 157"
+
+            if (json_quebra["rupturas"][i]["desfecho"] == "Foi desarmado" || json_quebra["rupturas"][i]["desfecho"] == "Forçou a saída de bola adversária") {
+                outcomeColor = "248, 147, 97"
+            } else if (json_quebra["rupturas"][i]["desfecho"] == "Não recebeu a bola" || json_quebra["rupturas"][i]["desfecho"] == "Passe não concluído") {
+                outcomeColor = "254, 148, 181"
+            }
+
+            htmlConteudo2 += `<div class="item" onclick="selectRuptura(${i})">
+                <p class="crossing-index">Ruptura #${i + 1}</p>
+                <p class="time">${json_quebra["rupturas"][i]["inicio_ruptura"]}</p>
+                <div class="zone">${json_quebra["rupturas"][i]["zona_defesa"]}</div>
+                <div class="outcome" style="background: rgba(${outcomeColor}, 1)">${json_quebra["rupturas"][i]["desfecho"]}</div>
+            </div>`;
+        }
+    }
+    listaRupturas.innerHTML = htmlConteudo2
+}
+
+function renderSelectOutcomeFilter() {
+    let container = document.querySelector(".filter-container")
+    container.innerHTML = ``
+
+    let selectOptions = `
+        <option disabled selected>Selecione o desfecho</option>
+        <option value="Forçou a saída de bola adversária">Forçou a saída de bola adversária</option>
+        <option value="Passe não concluído">Passe não concluído</option>
+        <option value="Passou a bola">Passou a bola</option>
+        <option value="Foi desarmado">Foi desarmado</option>
+        <option value="Não recebeu a bola">Não recebeu a bola</option>
+    `
+
+    container.innerHTML = `
+    <select id="outcome-filter" onchange="applyOutcomeFilter(event.currentTarget.value)">
+        ${selectOptions}
+    </select>
+    `
+
+}
