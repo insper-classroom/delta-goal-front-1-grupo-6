@@ -330,11 +330,11 @@ function renderSelectZoneFilter() {
 
     let selectOptions = `
         <option disabled selected>Selecione a zona</option>
-        <option value="Zona 1.A">Zona: 1.A</option>
-        <option value="Zona 1.B">Zona: 1.B</option>
+        <option value="Zona 1 - A">Zona: 1.A</option>
+        <option value="Zona 1 - B">Zona: 1.B</option>
         <option value="Zona 2">Zona: 2</option>
-        <option value="Zona 3.A">Zona: 3.A</option>
-        <option value="Zona 3.B">Zona: 3.B</option>
+        <option value="Zona 3 - A">Zona: 3.A</option>
+        <option value="Zona 3 - B">Zona: 3.B</option>
     `
 
     container.innerHTML = `
