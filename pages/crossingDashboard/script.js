@@ -448,6 +448,7 @@ async function getMatchDetails() {
     setTimeout(() => {
         renderOutcomeCharts(responseData)
         renderInvolvedPlayersChart("team1", "team1-barchart", "team1-players-title")
+        renderInvolvedPlayersChart("team2", "team2-barchart", "team2-players-title")
     }, 1000)
 
     team1Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]] 
