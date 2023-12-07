@@ -11,3 +11,4 @@
 - https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
 - https://copyprogramming.com/howto/javascript-passing-an-object-in-the-html-onclick
+- https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=pt-br

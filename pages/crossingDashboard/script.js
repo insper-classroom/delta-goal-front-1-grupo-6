@@ -11,14 +11,14 @@ function getAllCrossingPlayers() {
 
     for (let i in team1Data.rupturas) {
         for (let name of team1Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
-            if (!players.includes(name.trim())) {
+            if (!players.includes(name.trim()) && name.trim() != "") {
                 players.push(name.trim())
             }
         }
     }
     for (let i in team2Data.rupturas) {
         for (let name of team2Data.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
-            if (!players.includes(name.trim())) {
+            if (!players.includes(name.trim()) && name.trim() != "") {
                 players.push(name.trim())
             }
         }
