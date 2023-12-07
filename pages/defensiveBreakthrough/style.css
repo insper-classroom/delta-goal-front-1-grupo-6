@@ -61,6 +61,11 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.content::-webkit-scrollbar {
+    width: 0px !important;
+    
+}
+
 /* ------------------------------- */
 
 .change-dash-container {
