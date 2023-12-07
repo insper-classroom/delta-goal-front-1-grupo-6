@@ -2,7 +2,7 @@ google.charts.load('current', {'packages':['corechart']});
 
 let team1Data = undefined
 let team2Data = undefined
-let gameVideoUrl = ""
+let matchId = ""
 
 document.querySelector(".username").textContent = `Olá, ${localStorage.getItem("club_name")}`
 
@@ -249,11 +249,11 @@ function selectCrossing(crossing, cIndex) {
         <p class="outcome" style="background-color: rgba(${outcomeColor})">${crossing.desfecho}</p>
     `
 
-    let gameVideo = document.querySelector(".game-video")
+    let matchVideo = document.querySelector(".game-video")
 
-    let seconds = Number(crossing.instante_cruzamento.split(":")[0]) * 60 * 60 +  Number(crossing.instante_cruzamento.split(":")[1]) * 60 + Number(crossing.instante_cruzamento.split(":")[2]) 
+    let videoUrl = `http://127.0.0.1:5500/public/match_${matchId}_${crossing.instante_cruzamento.replaceAll(":", "_")}.mp4`
 
-    gameVideo.src = gameVideoUrl + "?t=" + (seconds - 5)
+    matchVideo.src = videoUrl
 
     let defendingContainer = document.querySelector(".defending-players")
     defendingContainer.innerHTML = ""
@@ -381,6 +381,8 @@ async function getMatchDetails() {
         return toast("Id inválido", "error")
     }
 
+    matchId = id
+
     let options = {
         method: "GET",
         headers: {
@@ -410,10 +412,6 @@ async function getMatchDetails() {
         team2Data.rupturas[i].teamName = team2Data.nome
     }
 
-    let gameVideo = document.querySelector(".game-video")
-    gameVideoUrl = responseData.match.video_url
-    gameVideo.src = responseData.match.video_url
-
     renderCrossingList()
     selectCrossing(team1Data.rupturas[0], 0)
 
@@ -422,11 +420,7 @@ async function getMatchDetails() {
     renderEmphasisPlayers("team2")
 
     applyAllFilter()
-
-    console.log(team1Data.rupturas)
 }
-
-
 
 getMatchDetails()
 
