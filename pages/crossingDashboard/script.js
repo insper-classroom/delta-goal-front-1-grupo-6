@@ -361,7 +361,7 @@ async function renderEmphasisPlayers(team) {
             <i class="bi bi-person-fill player-icon"></i>
             <p>${name}</p>
 
-            <span>${teamPlayers[name]} <i class="bi bi-caret-up-fill"></i></span>
+            <span>${teamPlayers[name]}</span>
         </div>
         `
     }

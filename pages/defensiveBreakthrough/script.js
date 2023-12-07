@@ -163,7 +163,7 @@ fetch(backendURL, {
         <div class="player">
             <i class="bi bi-person-fill player-icon"></i>
             <p>${json_quebra["top_5"][i]["nome"]}</p>
-            <span>${json_quebra["top_5"][i]["rupturas"]} <i class="bi bi-caret-up-fill"></i></span>
+            <span>${json_quebra["top_5"][i]["rupturas"]} </span>
         </div>`;
     }
 
