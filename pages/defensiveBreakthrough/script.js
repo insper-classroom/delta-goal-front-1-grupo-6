@@ -3,6 +3,12 @@ document.querySelector(".username").textContent = `Olá, ${localStorage.getItem(
 
 var json_quebra;
 let gameVideoUrl;
+let params = new URLSearchParams(window.location.search)
+let matchId = params.get("id")
+
+if (!matchId) {
+    toast("Id inválido", "error")
+}
 
 function selectRuptura(index) {
     let ruptura = json_quebra.rupturas[index]
@@ -11,8 +17,11 @@ function selectRuptura(index) {
 
     let seconds = Number(ruptura.inicio_ruptura.split(":")[0]) * 60 * 60 +  Number(ruptura.inicio_ruptura.split(":")[1]) * 60 + Number(ruptura.inicio_ruptura.split(":")[2]) 
 
-    let gameVideo = document.querySelector(".game-video")
-    gameVideo.src = gameVideoUrl + "?t=" + seconds
+    let matchVideo = document.querySelector(".game-video")
+
+    let videoUrl = `http://127.0.0.1:5500/public/match_${matchId}_${ruptura.instante_ruptura.replaceAll(":", "_")}.mp4`
+
+    matchVideo.src = videoUrl
 
     document.querySelector(".jogadores-posse-de-bola").innerHTML = `
     <div class="player">
@@ -106,13 +115,8 @@ function drawChart(listaDesfechos) {
     chart.draw(data, options);
   }
 
-let params = new URLSearchParams(window.location.search)
-let id = params.get("id")
 
-if (!id) {
-    toast("Id inválido", "error")
-}
-const backendURL = 'http://127.0.0.1:5500/match/' + id;
+const backendURL = 'http://127.0.0.1:5500/match/' + matchId;
 
 fetch(backendURL, {
     method: 'GET',
