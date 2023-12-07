@@ -373,6 +373,52 @@ async function renderEmphasisPlayers(team) {
     `
 }
 
+// ref: https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=pt-br
+// ref: https://jsfiddle.net/api/post/library/pure/
+// ref https://developers.google.com/chart/interactive/docs/gallery/barchart?hl=pt-br
+function renderInvolvedPlayersChart(team, chartContainerId, titleElementId) {
+    let teamData;
+    if (team == "team1") {
+        teamData = team1Data
+    } else {
+        teamData = team2Data
+    }
+
+    let titleElement = document.querySelector("#"+titleElementId)
+    titleElement.textContent = `Jogadores envolvidos ` + teamData.nome
+
+    let playersStats = {}
+
+    for (let i in teamData.rupturas) {
+        for (let name of teamData.rupturas[i].nome_jogadores_time_cruzando.split(",")) {
+            let filteredName = name.trim()
+            if (!filteredName) continue
+
+            if (playersStats[filteredName]) {
+                playersStats[filteredName] += 1
+            } else {
+                playersStats[filteredName] = 1
+            }
+        }
+    }
+
+    let chartData = [
+        ["jogador", "envolvimento", { role: 'annotation' }]
+    ]
+
+    for (let i in playersStats) {
+        chartData.push([i, playersStats[i], playersStats[i]])
+    }
+
+    var data = google.visualization.arrayToDataTable(chartData);
+
+    var chart = new google.visualization.BarChart(document.getElementById(chartContainerId));
+
+    chart.draw(data, {});
+
+    console.log(playersStats)
+}
+
 async function getMatchDetails() {
     let params = new URLSearchParams(window.location.search)
     let id = params.get("id")
@@ -401,6 +447,7 @@ async function getMatchDetails() {
 
     setTimeout(() => {
         renderOutcomeCharts(responseData)
+        renderInvolvedPlayersChart("team1", "team1-barchart", "team1-players-title")
     }, 1000)
 
     team1Data = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]] 
@@ -420,6 +467,7 @@ async function getMatchDetails() {
     renderEmphasisPlayers("team2")
 
     applyAllFilter()
+
 }
 
 getMatchDetails()

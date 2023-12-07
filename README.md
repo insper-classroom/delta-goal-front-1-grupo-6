@@ -12,3 +12,4 @@
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
 - https://copyprogramming.com/howto/javascript-passing-an-object-in-the-html-onclick
 - https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=pt-br
+- https://jsfiddle.net/api/post/library/pure/
