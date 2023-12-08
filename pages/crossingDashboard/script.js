@@ -251,7 +251,7 @@ function selectCrossing(crossing, cIndex) {
 
     let matchVideo = document.querySelector(".game-video")
 
-    let videoUrl = `http://127.0.0.1:5500/public/match_${matchId}_${crossing.instante_cruzamento.replaceAll(":", "_")}.mp4`
+    let videoUrl = `https://sprintgrupo6-7ec65dde579b.herokuapp.com/public/match_${matchId}_${crossing.instante_cruzamento.replaceAll(":", "_")}.mp4`
 
     matchVideo.src = videoUrl
 
@@ -436,7 +436,7 @@ async function getMatchDetails() {
         }
     }
 
-    let response = await fetch("http://127.0.0.1:5500/match/" + id, options)
+    let response = await fetch("https://sprintgrupo6-7ec65dde579b.herokuapp.com/match/" + id, options)
     let responseData = await response.json()
 
     let team1Name = responseData.match.json_cruzamento.time[Object.keys(responseData.match.json_cruzamento.time)[0]].nome

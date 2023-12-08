@@ -19,7 +19,7 @@ function selectRuptura(index) {
 
     let matchVideo = document.querySelector(".game-video")
 
-    let videoUrl = `http://127.0.0.1:5500/public/match_${matchId}_${ruptura.instante_ruptura.replaceAll(":", "_")}.mp4`
+    let videoUrl = `https://sprintgrupo6-7ec65dde579b.herokuapp.com/public/match_${matchId}_${ruptura.instante_ruptura.replaceAll(":", "_")}.mp4`
 
     matchVideo.src = videoUrl
 
@@ -116,7 +116,7 @@ function drawChart(listaDesfechos) {
   }
 
 
-const backendURL = 'http://127.0.0.1:5500/match/' + matchId;
+const backendURL = 'https://sprintgrupo6-7ec65dde579b.herokuapp.com/match/' + matchId;
 
 fetch(backendURL, {
     method: 'GET',

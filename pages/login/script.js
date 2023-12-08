@@ -6,7 +6,7 @@ async function login() {
         return toast("Preencha todas as informações", "error")
     }
 
-    let responseData = await (await fetch("http://127.0.0.1:5500/login", {
+    let responseData = await (await fetch("https://sprintgrupo6-7ec65dde579b.herokuapp.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -31,7 +31,7 @@ async function forgotPwd() {
         return toast("Preencha seu email", "error")
     }
 
-    let responseData = await (await fetch("http://127.0.0.1:5500/email/send", {
+    let responseData = await (await fetch("https://sprintgrupo6-7ec65dde579b.herokuapp.com/email/send", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

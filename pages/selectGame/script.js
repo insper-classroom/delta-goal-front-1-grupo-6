@@ -11,7 +11,7 @@ async function getGames() {
         headers: {"Authorization": "Bearer " + localStorage.getItem("token")}
     }
 
-    let responseData = await (await fetch("http://127.0.0.1:5500/matches", options)).json()
+    let responseData = await (await fetch("https://sprintgrupo6-7ec65dde579b.herokuapp.com/matches", options)).json()
 
     let matches = responseData.matches
     console.log(matches)

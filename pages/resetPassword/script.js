@@ -9,7 +9,7 @@ async function resetPwd() {
     const token = urlParams.get('token');
     console.log(token)
 
-    let responseData = await (await fetch("http://127.0.0.1:5500/password/reset", {
+    let responseData = await (await fetch("https://sprintgrupo6-7ec65dde579b.herokuapp.com/password/reset", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
