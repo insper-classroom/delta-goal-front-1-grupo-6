@@ -25,4 +25,9 @@
 - url: https://6573652191acff4a04ca088b--scintillating-queijadas-87f177.netlify.app/pages/login/login.html
 
 # Feito por:
-André Pereira, Ana Helena Caiafa, Deena El Orra, Matheus Pereira, Henrique Mayor, Eduardo Yaginuma
+- [André Pereira](https://github.com/DECO190)
+- [Ana Helena Caiafa](https://github.com/anahc3)
+- [Deena El Orra](https://github.com/DeenaElOrra)
+- [Matheus Pereira](https://github.com/mmp052)
+- [Henrique Mayor](https://github.com/henriquessm)
+- [Eduardo Yaginuma](https://github.com/EduardoTakeiYaginuma)
