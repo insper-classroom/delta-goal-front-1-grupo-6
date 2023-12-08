@@ -13,3 +13,7 @@
 - https://copyprogramming.com/howto/javascript-passing-an-object-in-the-html-onclick
 - https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=pt-br
 - https://jsfiddle.net/api/post/library/pure/
+
+# Deploy:
+- Deploy feito com netlify https://www.netlify.com/
+- url: https://6573652191acff4a04ca088b--scintillating-queijadas-87f177.netlify.app/pages/login/login.html
