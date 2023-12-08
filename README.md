@@ -1,5 +1,7 @@
 <img src="https://lirp.cdn-website.com/25aaefc0/dms3rep/multi/opt/logo_color-4x-696w.png" alt="Delta Goal">
 
+
+
 # Referencias:
 - https://dev.to/avxkim/fixing-cannot-find-name-dirnamets2304-1106
 - https://stackoverflow.com/questions/14249506/how-can-i-wait-in-node-js-javascript-l-need-to-pause-for-a-period-of-time
@@ -21,3 +23,6 @@
 # Deploy:
 - Deploy feito com netlify https://www.netlify.com/
 - url: https://6573652191acff4a04ca088b--scintillating-queijadas-87f177.netlify.app/pages/login/login.html
+
+# Feito por:
+André Pereira, Ana Helena Caiafa, Deena El Orra, Matheus Pereira, Henrique Mayor, Eduardo Yaginuma
