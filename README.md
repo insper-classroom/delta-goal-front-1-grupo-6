@@ -1,3 +1,5 @@
+<img src="https://lirp.cdn-website.com/25aaefc0/dms3rep/multi/opt/logo_color-4x-696w.png" alt="Delta Goal">
+
 # Referencias:
 - https://dev.to/avxkim/fixing-cannot-find-name-dirnamets2304-1106
 - https://stackoverflow.com/questions/14249506/how-can-i-wait-in-node-js-javascript-l-need-to-pause-for-a-period-of-time
